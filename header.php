@@ -291,7 +291,7 @@ session_start();
                                         </g>
                                     </svg>
                                     <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}
-                        ?> </span> 
+                                         ?> </span> 
                                 </a>
                             </li>
                         </ul>
@@ -340,13 +340,11 @@ session_start();
                         </a>
                     </li>";
             }
-            ?>
-        </ul>
-<?php
-}
-?>
-
-                            
+                    ?>
+                </ul>
+                <?php
+                }
+                ?>     
                             <nav class="category__mobile--menu">
                             <?php
                                 $query = "SELECT * FROM category";
@@ -510,7 +508,8 @@ session_start();
                             </svg> 
                         </span>
                         <span class="offcanvas__stikcy--toolbar__label">Cart</span>
-                        <span class="items__count">3</span> 
+                        <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}
+                        ?> </span> 
                     </a>
                 </li>
                 <li class="offcanvas__stikcy--toolbar__list">
@@ -623,7 +622,7 @@ session_start();
             </div>
             <div class="minicart__button d-flex justify-content-center">
                 <a class="primary__btn minicart__button--link" href="cart.php">View cart</a>
-                <a class="primary__btn minicart__button--link" href="checkout.html">Checkout</a>
+                <a class="primary__btn minicart__button--link" href="checkout.php">Checkout</a>
             
             </div>
             

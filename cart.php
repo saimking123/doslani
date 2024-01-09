@@ -248,6 +248,7 @@ if (isset($_POST['update'])) {
     <?php
     }
     ?>
+    
             </tbody>
         </table> 
                                    
@@ -277,23 +278,40 @@ if (isset($_POST['update'])) {
                                     </div>
                                     <div class="cart__summary--total mb-20">
                                         <table class="cart__summary--total__table">
-                                            <tbody>
-                                                <tr class="cart__summary--total__list">
-                                                    <td class="cart__summary--total__title text-left">SUBTOTAL</td>
-                                                    <td class="cart__summary--amount text-right">$860.00</td>
-                                                </tr>
+                                        <?php
+                                        $totalPrice = 0;
+                                            $cartItems = array();
+
+                                            if (isset($_SESSION['cart'])) {
+                                                foreach ($_SESSION['cart'] as $k => $item) {
+                                                    $itemPrice = $item['price'] * $item['quan'];
+                                                    $totalPrice += $itemPrice;
+
+                                                    // Check if this item is already in cartItems
+                                                    if (isset($cartItems[$item['id']])) {
+                                                        // If it is, update the quantity
+                                                        $cartItems[$item['id']]['quan'] += $item['quan'];
+                                                    } else {
+                                                        // If not, add it to cartItems
+                                                        $cartItems[$item['id']] = $item;
+                                                    }
+                                                }
+                                            }                               
+                                            echo '<tbody>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                                    <td class="cart__summary--amount text-right">$860.00</td>
+                                                    <td class="cart__summary--amount text-right"> Pkr: ' . $totalPrice . '</td>
                                                 </tr>
-                                            </tbody>
+                                            </tbody>';
+                                            ?>
+                                            
                                         </table>
                                     </div>
                                     <div class="cart__summary--footer">
                                         <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
                                         <ul class="d-flex justify-content-between">
                                             <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.html">Check Out</a></li>
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.php">Check Out</a></li>
                                         </ul>
                                     </div>
                                 </div> 

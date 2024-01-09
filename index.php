@@ -172,9 +172,7 @@ foreach ($query_connect as $rows) {
                 ORDER BY p.popularity
                 LIMIT 10";
 
-
-
-     
+                // $selectquery = "SELECT * from product LEFT JOIN subcategory_images on product_id = product.id ";     
                 $selectqueryconnect = mysqli_query($conn, $selectquery);
                 
                 foreach($selectqueryconnect as $rows ){                            
