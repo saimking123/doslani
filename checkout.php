@@ -31,25 +31,25 @@ include("header.php");
                             <form action="#">
                                 <div class="checkout__content--step section__contact--information">
                                     <div class="section__header checkout__section--header d-flex align-items-center justify-content-between mb-25">
-                                        <h2 class="section__header--title h3">Contact information</h2>
+                                        <!-- <h2 class="section__header--title h3">Contact information</h2> -->
                                         <p class="layout__flex--item">
                                             Already have an account?
                                             <a class="layout__flex--item__link" href="login.html">Log in</a>  
                                         </p>
                                     </div>
-                                    <div class="customer__information">
+                                    <!-- <div class="customer__information">
                                         <div class="checkout__email--phone mb-12">
                                             <label>
                                                 <input class="checkout__input--field border-radius-5" placeholder="Email or mobile phone mumber"  type="text">
                                             </label>
-                                        </div>
-                                        <div class="checkout__checkbox">
+                                        </div> -->
+                                        <!-- <div class="checkout__checkbox">
                                             <input class="checkout__checkbox--input" id="check1" type="checkbox">
                                             <span class="checkout__checkbox--checkmark"></span>
                                             <label class="checkout__checkbox--label" for="check1">
                                                 Email me with news and offers</label>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                    <!-- </div>  -->
                                 </div>
                                 <div class="checkout__content--step section__shipping--address">
                                     <div class="section__header mb-25">
@@ -59,59 +59,49 @@ include("header.php");
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 mb-20">
                                                 <div class="checkout__input--list ">
-                                                    <label class="checkout__input--label mb-5" for="input1">Fist Name <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="First name (optional)" id="input1"  type="text">
+                                                    <label class="checkout__input--label mb-5" for="input1">Full Name<span class="checkout__input--label__star">*</span></label>
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Full Name" name="fullname" id="input1"  type="text">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 mb-20">
                                                 <div class="checkout__input--list">
-                                                    <label class="checkout__input--label mb-5" for="input2">Last Name <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Last name" id="input2"  type="text">
+                                                    <label class="checkout__input--label mb-5" for="input2">Email <span class="checkout__input--label__star">*</span></label>
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Email" name="email" id="input2"  type="text">
                                                 </div>
                                             </div>
                                             <div class="col-12 mb-20">
                                                 <div class="checkout__input--list">
-                                                    <label class="checkout__input--label mb-5" for="input3">Company Name <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Company (optional)" id="input3" type="text">
+                                                    <label class="checkout__input--label mb-5" for="input3">Contact No<span class="checkout__input--label__star">*</span></label>
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Contact no" id="input3" type="number" name="contactno">
                                                 </div>
                                             </div>
                                             <div class="col-12 mb-20">
                                                 <div class="checkout__input--list">
                                                     <label class="checkout__input--label mb-5" for="input4">Address <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Address1" id="input4" type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Address1" name="address1" id="input4" type="text">
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-20">
+                                            <!-- <div class="col-12 mb-20">
                                                 <div class="checkout__input--list">
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Apartment, suite, etc. (optional)"  type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Apartment, suite, etc. (optional)" name="address2" type="text">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-12 mb-20">
                                                 <div class="checkout__input--list">
                                                     <label class="checkout__input--label mb-5" for="input5">Town/City <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="City" id="input5" type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="City" name="city" id="input5" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-20">
-                                                <div class="checkout__input--list">
-                                                    <label class="checkout__input--label mb-5" for="country">Country/region <span class="checkout__input--label__star">*</span></label>
-                                                    <div class="checkout__input--select select">
-                                                        <select class="checkout__input--select__field border-radius-5" id="country">
-                                                            <option value="1">India</option>
-                                                            <option value="2">United States</option>
-                                                            <option value="3">Netherlands</option>
-                                                            <option value="4">Afghanistan</option>
-                                                            <option value="5">Islands</option>
-                                                            <option value="6">Albania</option>
-                                                            <option value="7">Antigua Barbuda</option>
-                                                        </select>
+                                            <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-5" for="input11">Country/region <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Country/region" name="country" id="input11" type="text">
                                                     </div>
-                                                </div>
                                             </div>
                                             <div class="col-lg-6 mb-20">
                                                 <div class="checkout__input--list">
                                                     <label class="checkout__input--label mb-5" for="input6">Postal Code <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Postal code" id="input6" type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="zipcode" id="input6" type="text">
                                                 </div>
                                             </div>
                                         </div>
@@ -127,73 +117,53 @@ include("header.php");
                                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-20">
                                                     <div class="checkout__input--list ">
                                                         <label class="checkout__input--label mb-5" for="input7">Fist Name <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="First name (optional)" id="input7"  type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="First name " name="shipping_name" id="input7"  type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-20">
                                                     <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-5" for="input8">Last Name <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Last name" id="input8"  type="text">
+                                                        <label class="checkout__input--label mb-5" for="input8">Email <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Email" name="email" name="shipping_email" id="input8"  type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-5" for="input9">Company Name <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Company (optional)" id="input9" type="text">
+                                                        <label class="checkout__input--label mb-5" for="input9">Contact No<span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5" placeholder="contact no" name="shipping_contact" id="input9" type="number">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input10">Address <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Address1" id="input10" type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Address" name="shipping_address" id="input10" type="text">
                                                     </div>
                                                 </div>
-                                                <div class="col-12 mb-20">
-                                                    <div class="checkout__input--list">
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Apartment, suite, etc. (optional)"  type="text">
-                                                    </div>
-                                                </div>
+                
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input11">Town/City <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="City" id="input11" type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="City" name="shipping_city" id="input11" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-20">
-                                                    <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-5" for="country2">Country/region <span class="checkout__input--label__star">*</span></label>
-                                                        <div class="checkout__input--select select">
-                                                            <select class="checkout__input--select__field border-radius-5" id="country2">
-                                                                <option value="1">India</option>
-                                                                <option value="2">United States</option>
-                                                                <option value="3">Netherlands</option>
-                                                                <option value="4">Afghanistan</option>
-                                                                <option value="5">Islands</option>
-                                                                <option value="6">Albania</option>
-                                                                <option value="7">Antigua Barbuda</option>
-                                                            </select>
-                                                        </div>
+                                                <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-5" for="input11">Country/region <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Country/region" name="shipping_country" id="input11" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input12">Postal Code <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Postal code" id="input12" type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="shipping_zipcode" id="input12" type="text">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </details>
-                                    <div class="checkout__checkbox">
-                                        <input class="checkout__checkbox--input" id="checkbox2" type="checkbox">
-                                        <span class="checkout__checkbox--checkmark"></span>
-                                        <label class="checkout__checkbox--label" for="checkbox2">
-                                            Save this information for next time</label>
-                                    </div>
                                 </div>
                                 <div class="order-notes mb-20">
                                     <label class="checkout__input--label mb-5" for="order">Order Notes <span class="checkout__input--label__star">*</span></label>
-                                   <textarea class="checkout__notes--textarea__field border-radius-5" id="order" placeholder="Notes about your order, e.g. special notes for delivery." spellcheck="false"></textarea>
+                                   <textarea class="checkout__notes--textarea__field border-radius-5" id="order" name="order_notes" placeholder="Notes about your order, e.g. special notes for delivery." spellcheck="false"></textarea>
                                 </div>
                                 <div class="checkout__content--step__footer d-flex align-items-center">
                                     <a class="continue__shipping--btn primary__btn border-radius-5" href="index.html">Continue To Shipping</a>
@@ -235,7 +205,7 @@ include("header.php");
                                             <td class="cart__table--body__list">
                                                 <div class="product__image two  d-flex align-items-center">
                                                     <div class="product__thumbnail border-radius-5">
-                                                        <a class="display-block" href="product-details.html"><img class="display-block border-radius-5"  src='<?php echo str_replace("../", "", $item['img']); ?>' alt="cart-product"></a>
+                                                        <a class="display-block" href="product-details.html"><img class="display-block border-radius-5" src='<?php echo str_replace("../", "", $item['img']); ?>' alt="cart-product"></a>
                                                         <span class="product__thumbnail--quantity"><?php echo $item['quan']; ?></span>
                                                     </div>
                                                     <div class="product__description">
@@ -254,8 +224,8 @@ include("header.php");
                                     </tbody>
                                 </table> 
                             </div>
-
-                            <?php
+                                <!-- discount work start -->
+                                    <?php
                                     $totalPrice = 0;
                                     $cartItems = array();
                     
@@ -273,82 +243,142 @@ include("header.php");
                                                 $cartItems[$item['id']] = $item;
                                             }
                                             }
-                                        }
-                                     
-                                      
+                                        }                                            
+                                        // Assume $coupon_code is the variable holding the coupon code
+                                        $coupon_code = isset($_POST['coupon']) ? $_POST['coupon'] : "";
+                                        
+                                        // Your existing HTML and form code
                                         echo '<div class="checkout__discount--code">
-                                                <form class="d-flex" action="get_discount.php" method="post">
+                                                <form class="d-flex" action="" method="post">
                                                     <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
                                                     <input type="hidden" value="' . $totalPrice . '" name="price" id="price">
-                                                    <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="submit">Apply</button>
+                                                    <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate"  type="submit">Apply</button>
                                                 </form>
-                                            </div>
-                                       
-                                    
-                                            <div class="checkout__total">
-                                            <table class="checkout__total--table">
-                                                <tbody class="checkout__total--body">
-                                                    <tr class="checkout__total--items">
-                                                        <td class="checkout__total--title text-left">Subtotal </td>
-                                                        <td class="checkout__total--amount text-right" id="total">Pkr: ' . $totalPrice . '</td>
-                                                    </tr>';
-                                      
+                                            </div>';
+                                        
+                                        // Check if a coupon code is provided
+                                        if (!empty($coupon_code)) {
+                                            // Discount logic
+                                            $query = mysqli_query($conn, "SELECT * FROM `coupon` WHERE `coupon_code` = '$coupon_code' && `status` = 'Valid'") or die(mysqli_error());
+                                            $count = mysqli_num_rows($query);
+                                            $fetch = mysqli_fetch_array($query);
+                                            $array = array();
+                                        
+                                            if ($count > 0) {
+                                                $discount = $fetch['discount'] / 100;
+                                                $totalDiscount = $discount * $totalPrice;
+                                                $discountedPrice = $totalPrice - $totalDiscount;
+                                        
+                                                // Display discounted subtotal
+                                                echo '<div class="checkout__total">
+                                                        <table class="checkout__total--table">
+                                                            <tbody class="checkout__total--body">
+                                                                <tr class="checkout__total--items">
+                                                                    <td class="checkout__total--title text-left">Subtotal </td>
+                                                                    <td class="checkout__total--amount text-right" id="total">Pkr: ' . $discountedPrice . '</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>';
+                                            } else {
+                                                echo "Invalid Coupon Code!";
+                                            }
+                                        } else {
+                                            // Display original subtotal
+                                            echo '<div class="checkout__total">
+                                                    <table class="checkout__total--table">
+                                                        <tbody class="checkout__total--body">
+                                                            <tr class="checkout__total--items">
+                                                                <td class="checkout__total--title text-left">Subtotal </td>
+                                                                <td class="checkout__total--amount text-right" id="total">Pkr: ' . $totalPrice . '</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>';
+                                        }
                                         ?>
+                                    <?php
+                                    if (!empty($coupon_code)) {
+                                    // Discount logic
+                                    $query = mysqli_query($conn, "SELECT * FROM `coupon` WHERE `coupon_code` = '$coupon_code' && `status` = 'Valid'") or die(mysqli_error());
+                                    $count = mysqli_num_rows($query);
+                                    $fetch = mysqli_fetch_array($query);
 
-<script>
-	$(document).ready(function(){
-		$('#activate').on('click', function(){
-			var coupon = $('#coupon').val();
-			var price = $('#price').val();
-			if(coupon == ""){
-				alert("Please enter a coupon code!");
-			}else{
-				$.post('get_discount.php', {coupon: coupon, price: price}, function(data){
-					if(data == "error"){
-						alert("Invalid Coupon Code!");
-						$('#total').val(price);
-						$('#result').html('');
-					}else{
-						var json = JSON.parse(data);
-						$('#result').html("<h4 class='pull-right text-danger'>"+json.discount+"% Off</h4>");
-						$('#total').val(json.price);
-					}
-				});
-			}
-		});
-	});
-</script>
-           
+                                    if ($count > 0) {
+                                        $discount = $fetch['discount'] / 100;
+                                        $totalDiscount = $discount * $totalPrice;
+                                        $discountedPrice = $totalPrice - $totalDiscount;
 
-                                        <tr class="checkout__total--items">
-                                            <td class="checkout__total--title text-left">Shipping</td>
-                                            <td class="checkout__total--calculated__text text-right">Calculated at next step</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot class="checkout__total--footer">
-                                        <tr class="checkout__total--footer__items">
-                                            <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                            <td class="checkout__total--footer__amount checkout__total--footer__list text-right"><?php echo 'Pkr: '.  $totalPrice + 100; ?></td>
-                                        </tr>
-                                    </tfoot>
+                                        // Display discounted shipping cost
+                                        echo '<tr class="checkout__total--items">
+                                                <h3><td class="checkout__total--title text-left">Shipping</td></h5>  
+                                                <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                            </tr>';
+
+                                        // Display discounted subtotal
+                                        echo '<tfoot class="checkout__total--footer">
+                                                <tr class="checkout__total--footer__items">
+                                                    <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($discountedPrice + 100) . '</td>
+                                                </tr>
+                                            </tfoot>';
+                                    } else {
+                                        // Display original shipping cost
+                                        echo '<tr class="checkout__total--items">
+                                                <h3><td class="checkout__total--title text-left">Shipping</td></h5>  
+                                                <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                            </tr>';
+
+                                        // Display original total
+                                        echo '<tfoot class="checkout__total--footer">
+                                                <tr class="checkout__total--footer__items">
+                                                    <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($totalPrice + 100) . '</td>
+                                                </tr>
+                                            </tfoot>';
+                                    }
+                                } else {
+                                    // Display original shipping cost
+                                    echo '<tr class="checkout__total--items">
+                                            <h3><td class="checkout__total--title text-left">Shipping</td></h5>  
+                                            <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                        </tr>';
+
+                                    // Display original total
+                                    echo '<tfoot class="checkout__total--footer">
+                                            <tr class="checkout__total--footer__items">
+                                                <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($totalPrice + 100) . '</td>
+                                            </tr>
+                                        </tfoot>';
+                                }
+                                ?>   
+                                <!-- Discount Work End -->
                                 </table>
-                            </div>
+                            
                             <div class="payment__history mb-30">
                                 <h3 class="payment__history--title mb-20">Payment</h3>
                                 <ul class="payment__history--inner d-flex">
                                     <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Credit Card</button></li>
-                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li>
-                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Paypal</button></li>
+                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">BankTransfer</button></li>
+                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">COD</button></li>
+                                    <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">COD</button></li> -->
+
                                 </ul>
                             </div>
-                            <button class="checkout__now--btn primary__btn" type="submit">Checkout Now</button>
+                            <button class="checkout__now--btn primary__btn" type="submit" <?php echo (empty($_SESSION['cart']) ? 'disabled' : ''); ?>>Checkout Now</button>
                         </aside>
                     </div>
                     
                 </div>
             </div>
         </div>
+        </div>
         
+
+
+
+
         <!-- End checkout page area -->
 
         <!-- Start shipping section -->

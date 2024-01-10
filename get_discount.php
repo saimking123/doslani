@@ -15,7 +15,7 @@
 		
 		echo json_encode($array);
 		// header("location:checkout.php");
-		
+
 	}else{
 		echo "error";
 	}
