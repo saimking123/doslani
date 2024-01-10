@@ -28,7 +28,7 @@ include("header.php");
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
                         <div class="main checkout__mian">
-                            <form action="#">
+                            <form action="checkout_backend.php">
                                 <div class="checkout__content--step section__contact--information">
                                     <div class="section__header checkout__section--header d-flex align-items-center justify-content-between mb-25">
                                         <!-- <h2 class="section__header--title h3">Contact information</h2> -->
@@ -37,19 +37,7 @@ include("header.php");
                                             <a class="layout__flex--item__link" href="login.html">Log in</a>  
                                         </p>
                                     </div>
-                                    <!-- <div class="customer__information">
-                                        <div class="checkout__email--phone mb-12">
-                                            <label>
-                                                <input class="checkout__input--field border-radius-5" placeholder="Email or mobile phone mumber"  type="text">
-                                            </label>
-                                        </div> -->
-                                        <!-- <div class="checkout__checkbox">
-                                            <input class="checkout__checkbox--input" id="check1" type="checkbox">
-                                            <span class="checkout__checkbox--checkmark"></span>
-                                            <label class="checkout__checkbox--label" for="check1">
-                                                Email me with news and offers</label>
-                                        </div> -->
-                                    <!-- </div>  -->
+
                                 </div>
                                 <div class="checkout__content--step section__shipping--address">
                                     <div class="section__header mb-25">
@@ -78,7 +66,7 @@ include("header.php");
                                             <div class="col-12 mb-20">
                                                 <div class="checkout__input--list">
                                                     <label class="checkout__input--label mb-5" for="input4">Address <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Address1" name="address1" id="input4" type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Address1" name="address" id="input4" type="text">
                                                 </div>
                                             </div>
                                             <!-- <div class="col-12 mb-20">
@@ -101,7 +89,7 @@ include("header.php");
                                             <div class="col-lg-6 mb-20">
                                                 <div class="checkout__input--list">
                                                     <label class="checkout__input--label mb-5" for="input6">Postal Code <span class="checkout__input--label__star">*</span></label>
-                                                    <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="zipcode" id="input6" type="text">
+                                                    <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="postal_address" id="input6" type="number">
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +142,7 @@ include("header.php");
                                                 <div class="col-lg-6 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input12">Postal Code <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="shipping_zipcode" id="input12" type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="shipping_postal_code" id="input12" type="text">
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,7 +154,7 @@ include("header.php");
                                    <textarea class="checkout__notes--textarea__field border-radius-5" id="order" name="order_notes" placeholder="Notes about your order, e.g. special notes for delivery." spellcheck="false"></textarea>
                                 </div>
                                 <div class="checkout__content--step__footer d-flex align-items-center">
-                                    <a class="continue__shipping--btn primary__btn border-radius-5" href="index.html">Continue To Shipping</a>
+                                    <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="checkout">Checkout Now</button>
                                     <a class="previous__link--content" href="cart.html">Return to cart</a>
                                 </div>
                             </form>
@@ -362,11 +350,9 @@ include("header.php");
                                     <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Credit Card</button></li>
                                     <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">BankTransfer</button></li>
                                     <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">COD</button></li>
-                                    <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">COD</button></li> -->
-
+                                    
                                 </ul>
                             </div>
-                            <button class="checkout__now--btn primary__btn" type="submit" <?php echo (empty($_SESSION['cart']) ? 'disabled' : ''); ?>>Checkout Now</button>
                         </aside>
                     </div>
                     
