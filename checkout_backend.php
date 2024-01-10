@@ -1,24 +1,25 @@
 <?php
 include("connection/connection.php");
-session_start();
+// include("header.php");
 ?>
 
 <?php
-if (isset($_POST['placeholderbtn'])) {
+if (isset($_POST['checkout'])) {
   $fullname = $_POST['fullname'];
   $email = $_POST['email'];
-  $contactno = $_post['contactno'];
+  $contactno = $_POST['contactno'];
   $address = $_POST['address'];
-  $shipping_name = $_post['shipping_name'];
+  $shipping_name = $_POST['shipping_name'];
   $shipping_address = $_POST['shipping_address'];
   $shipping_city = $_POST['shipping_city'];
   $shipping_country = $_POST['shipping_country'];
-  $shipping_postal_code = $_POST['shipping_postal_code'];
+  $shipping_POSTal_code = $_POST['shipping_postal_code'];
   $shipping_email = $_POST['shipping_email'];
   $shipping_contact = $_POST['shipping_contact'];
   $country = $_POST['country'];
   $city = $_POST['city'];
-  $postal_code = $_POST['postal_code'];
+  $postal_code = $_POST['shipping_postal_code'];
+  $order_notes = $_POST['order_notes'];
   $order_status = 'inprocess';
   $payment = 'cashOnDelivery';
   $createdAt = date('Y-m-d H:i:s');
@@ -39,7 +40,11 @@ if (isset($_POST['placeholderbtn'])) {
   }
 
   // Create a database connection (assuming $conn is a valid database connection)
-  $query = "INSERT INTO customer_orders (full_name, email, address, shipping_address,shipping_email,shipping_phone, country, state, zipcode, order_status, payment, total_price, created_at, updated_at) VALUES ('".$firstname."', '".$lastname."', '".$email."', '".$address."', '".$shipping_address."','".$shipping_email."','".$shipping_phone."', '".$country."', '".$state."', '".$zip."', '".$order_status."', '".$payment."', '".$totalPrice."', '".$createdAt."', '".$updatedAt."')";
+  $query = "INSERT INTO customer_orders (full_name, email,contactno, address,shipping_name,shipping_city,shipping_country,shipping_POSTal_code,
+  shipping_address,shipping_email,shipping_contact, country, city, postal_code,Order_Notes, order_status, payment, total_price, created_at, updated_at)
+ VALUES ('$fullname', '$email', '$contactno', '$address', '$shipping_name','$shipping_address','$shipping_city', 
+ '$shipping_country', '$shipping_POSTal_code', '$shipping_email', '$shipping_contact', '$country','$city','$postal_code',
+ '$order_notes','$order_status','$payment', '$totalPrice', '$createdAt', '$updatedAt')";
 
   $queryconnect = mysqli_query($conn, $query);
 
@@ -48,13 +53,13 @@ if (isset($_POST['placeholderbtn'])) {
   } else {
       echo 'Query error: ' . mysqli_error($conn);
   }
- 
+ var_dump($query);
  
 
 ?>
 
 <?php
-if (isset($_POST['placeholderbtn'])) {
+if (isset($_POST['checkout'])) {
    
   
   $order_id = mysqli_insert_id($conn);
@@ -70,6 +75,7 @@ if (isset($_POST['placeholderbtn'])) {
         $insertOrderDetailsQuery = "INSERT INTO order_details (order_id, product_id, name, product_price, qty, total_price, created_at) VALUES ('$order_id', '$productId', '$itemName', '$productPrice', '$quantity', '$itemTotalPrice', '$createdAt')";
 
         $insertResult = mysqli_query($conn, $insertOrderDetailsQuery);
+       
 
         if (!$insertResult) {
             echo 'Error inserting order details: ' . mysqli_error($conn);

@@ -28,7 +28,7 @@ include("header.php");
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
                         <div class="main checkout__mian">
-                            <form action="checkout_backend.php">
+                            <form action="checkout_backend.php" method="post">
                                 <div class="checkout__content--step section__contact--information">
                                     <div class="section__header checkout__section--header d-flex align-items-center justify-content-between mb-25">
                                         <!-- <h2 class="section__header--title h3">Contact information</h2> -->
@@ -111,7 +111,7 @@ include("header.php");
                                                 <div class="col-lg-6 col-md-6 col-sm-6 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input8">Email <span class="checkout__input--label__star">*</span></label>
-                                                        <input class="checkout__input--field border-radius-5" placeholder="Email" name="email" name="shipping_email" id="input8"  type="text">
+                                                        <input class="checkout__input--field border-radius-5" placeholder="Email" name="shipping_email" name="shipping_email" id="input8"  type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mb-20">
@@ -437,5 +437,8 @@ include("header.php");
 
 <!-- Mirrored from risingtheme.com/html/demo-partsix/partsix/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2023 15:19:09 GMT -->
 </html>
+
+
+
 
 
