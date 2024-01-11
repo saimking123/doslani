@@ -11,9 +11,7 @@ if(isset($_POST['categorybtn']))
     $saveimg = $location . $filename;
     if (move_uploaded_file($tmpname, $saveimg)) {
         $insertquery = "INSERT INTO category(category_name,category_image)Values('".$name."','".$saveimg."')";
-
         // var_dump($insertquery);
-
         $insertqueryconnect = mysqli_query($conn, $insertquery);
     }
     if($insertqueryconnect)

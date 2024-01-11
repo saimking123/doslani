@@ -310,8 +310,8 @@ if (isset($_POST['update'])) {
                                     <div class="cart__summary--footer">
                                         <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
                                         <ul class="d-flex justify-content-between">
-                                            <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.php">Check Out</a></li>
+                                            <!-- <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li> -->
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.php?param=<?php $item['id']?>">Check Out</a></li>
                                         </ul>
                                     </div>
                                 </div> 

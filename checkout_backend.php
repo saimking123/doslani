@@ -4,7 +4,7 @@ include("connection/connection.php");
 ?>
 
 <?php
-if (isset($_POST['checkout'])) {
+if(isset($_POST['checkout'])) {
   $fullname = $_POST['fullname'];
   $email = $_POST['email'];
   $contactno = $_POST['contactno'];
@@ -13,7 +13,7 @@ if (isset($_POST['checkout'])) {
   $shipping_address = $_POST['shipping_address'];
   $shipping_city = $_POST['shipping_city'];
   $shipping_country = $_POST['shipping_country'];
-  $shipping_POSTal_code = $_POST['shipping_postal_code'];
+  $shipping_Postal_code = $_POST['shipping_postal_code'];
   $shipping_email = $_POST['shipping_email'];
   $shipping_contact = $_POST['shipping_contact'];
   $country = $_POST['country'];
@@ -27,6 +27,7 @@ if (isset($_POST['checkout'])) {
   
   // Initialize total price
   $totalPrice = 0;
+  $cartItems = array();
 
   if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
       foreach ($_SESSION['cart'] as $item) {
@@ -37,13 +38,15 @@ if (isset($_POST['checkout'])) {
               $totalPrice += $itemPrice;
           }
       }
+  }else{
+    $totalprice = $_POST['price'];
   }
 
   // Create a database connection (assuming $conn is a valid database connection)
-  $query = "INSERT INTO customer_orders (full_name, email,contactno, address,shipping_name,shipping_city,shipping_country,shipping_POSTal_code,
+  $query = "INSERT INTO customer_orders (full_name, email,contactno, address,shipping_name,shipping_city,shipping_country,shipping_Postal_code,
   shipping_address,shipping_email,shipping_contact, country, city, postal_code,Order_Notes, order_status, payment, total_price, created_at, updated_at)
  VALUES ('$fullname', '$email', '$contactno', '$address', '$shipping_name','$shipping_address','$shipping_city', 
- '$shipping_country', '$shipping_POSTal_code', '$shipping_email', '$shipping_contact', '$country','$city','$postal_code',
+ '$shipping_country', '$shipping_Postal_code', '$shipping_email', '$shipping_contact', '$country','$city','$postal_code',
  '$order_notes','$order_status','$payment', '$totalPrice', '$createdAt', '$updatedAt')";
 
   $queryconnect = mysqli_query($conn, $query);
@@ -73,7 +76,7 @@ if (isset($_POST['checkout'])) {
         $itemTotalPrice = $productPrice * $quantity;
 
         $insertOrderDetailsQuery = "INSERT INTO order_details (order_id, product_id, name, product_price, qty, total_price, created_at) VALUES ('$order_id', '$productId', '$itemName', '$productPrice', '$quantity', '$itemTotalPrice', '$createdAt')";
-
+        
         $insertResult = mysqli_query($conn, $insertOrderDetailsQuery);
        
 
@@ -95,7 +98,7 @@ if ($queryconnect) {
           text: "Your order will be delivered in one to two weeks. We hope you enjoy your purchase and your order ID is ' . $order_id . '!",
           icon: "success",
       }).then(function() {
-          window.location.href = "home.php";
+          window.location.href = "index.php";
       });
   </script>';
   unset($_SESSION['cart']);

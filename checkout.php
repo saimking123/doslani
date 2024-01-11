@@ -155,9 +155,9 @@ include("header.php");
                                 </div>
                                 <div class="checkout__content--step__footer d-flex align-items-center">
                                     <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="checkout">Checkout Now</button>
-                                    <a class="previous__link--content" href="cart.html">Return to cart</a>
+                                    <a class="previous__link--content" href="cart.php">Return to cart</a>
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
 
@@ -167,53 +167,200 @@ include("header.php");
                             <div class="cart__table checkout__product--table">
                                 <table class="cart__table--inner">
                                     <tbody class="cart__table--body">
-                                   <?php
-                                    $totalPrice = 0;
-                                    $cartItems = array();
-                    
-                                    if (isset($_SESSION['cart'])) {
-                                        foreach ($_SESSION['cart'] as $k => $item) {
-                                            $itemPrice = $item['price'] * $item['quan'];
-                                            $totalPrice += $itemPrice;
-                    
-                                            // Check if this item is already in cartItems
-                                            if (isset($cartItems[$item['id']])) {
-                                                // If it is, update the quantity
-                                                $cartItems[$item['id']]['quan'] += $item['quan'];
-                                            } else {
-                                                // If not, add it to cartItems
-                                                $cartItems[$item['id']] = $item;
-                                            }
-                                            }
-                                        }
-                                        foreach ($cartItems as $item) {
-                                            $itemPrice = $item['price'] * $item['quan'];
-                                    ?>   
-                                    <tr class="cart__table--body__items">
+                                    <?php
+                                   if (isset($_GET['pro_id'])) {
+                                    // If pro_id is set in the URL, perform this block of code
+                                    $pro_id = $_GET["pro_id"];
+                                    $query = "SELECT * FROM product where id = $pro_id";
+                                    $result = mysqli_query($conn,$query);
+                                    while($row=mysqli_fetch_array($result)){
+                                
+                                    echo '<tr class="cart__table--body__items">
                                             <td class="cart__table--body__list">
-                                                <div class="product__image two  d-flex align-items-center">
+                                                <div class="product__image two d-flex align-items-center">
                                                     <div class="product__thumbnail border-radius-5">
-                                                        <a class="display-block" href="product-details.html"><img class="display-block border-radius-5" src='<?php echo str_replace("../", "", $item['img']); ?>' alt="cart-product"></a>
-                                                        <span class="product__thumbnail--quantity"><?php echo $item['quan']; ?></span>
+                                                        <a class="display-block" href="product-details.html"><img class="display-block border-radius-5" src="' . str_replace("../", "", $row['image']) . '" alt="cart-product"></a>
+                                                        <span class="product__thumbnail--quantity">' . $row[1] . '</span>
                                                     </div>
                                                     <div class="product__description">
-                                                        <h4 class="product__description--name"><a href="product-details.html"><?php echo $item['name'];?></a></h4>
+                                                        <h4 class="product__description--name"><a href="product-details.html">' . $row['name'] . '</a></h4>
                                                         <span class="product__description--variant">COLOR: Blue</span>
                                                     </div>
                                                 </div>
-                                            </td>                                        
-                                            <td class="cart__table--body__list">
-                                                <span class="cart__price"><?php echo 'PKR:'. $item ['price'];?></span>
                                             </td>
-                                        </tr>
-                                        <?php
+                                            <td class="cart__table--body__list">
+                                                <span class="cart__price">PKR:' . $row['price'] . '</span>
+                                            </td>
+                                        </tr>';
+                                    }
+                                    } else {
+
+                                        
+                                        $totalPrice = 0;
+                                        $cartItems = array();
+                        
+                                        if (isset($_SESSION['cart'])) {
+                                            foreach ($_SESSION['cart'] as $k => $item) {
+                                                $itemPrice = $item['price'] * $item['quan'];
+                                                $totalPrice += $itemPrice;
+                        
+                                                // Check if this item is already in cartItems
+                                                if (isset($cartItems[$item['id']])) {
+                                                    // If it is, update the quantity
+                                                    $cartItems[$item['id']]['quan'] += $item['quan'];
+                                                } else {
+                                                    // If not, add it to cartItems
+                                                    $cartItems[$item['id']] = $item;
+                                                }
+                                                }
                                             }
-                                        ?>
-                                    </tbody>
-                                </table> 
-                            </div>
+                                            foreach ($cartItems as $item) {
+                                                $itemPrice = $item['price'] * $item['quan'];
+                                        echo '<tr class="cart__table--body__items">
+                                        <td class="cart__table--body__list">
+                                            <div class="product__image two d-flex align-items-center">
+                                                <div class="product__thumbnail border-radius-5">
+                                                    <a class="display-block" href="product-details.html"><img class="display-block border-radius-5" src="' . str_replace("../", "", $item['img']) . '" alt="cart-product"></a>
+                                                    <span class="product__thumbnail--quantity">' . $item['quan'] . '</span>
+                                                </div>
+                                                <div class="product__description">
+                                                    <h4 class="product__description--name"><a href="product-details.html">' . $item['name'] . '</a></h4>
+                                                    <span class="product__description--variant">COLOR: Blue</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__table--body__list">
+                                            <span class="cart__price">PKR:' . $item['price'] . '</span>
+                                        </td>
+                                    </tr>';
+                            }
+                        }
+                            ?>
+                            </tbody>
+                            </table> 
+                            </div>               
                                 <!-- discount work start -->
                                     <?php
+                                   if (isset($_GET['pro_id'])) {
+                                    // If pro_id is set in the URL, perform this block of code
+                                    $pro_id = $_GET["pro_id"];
+                                    $query = "SELECT * FROM product where id = $pro_id";
+                                    $result = mysqli_query($conn,$query);
+                                    while($row=mysqli_fetch_array($result)){ 
+                                        // $price = ''; // Define $price before assigning it to $row['price']
+                                      $price = $row['price'] ;                                  
+                                        // Assume $coupon_code is the variable holding the coupon code
+                                        $coupon_code = isset($_POST['coupon']) ? $_POST['coupon'] : "";
+                                        
+                                        // Your existing HTML and form code
+                                        echo '<div class="checkout__discount--code">
+                                                <form class="d-flex" action="" method="post">
+                                                    <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
+                                                    <input type="hidden" value="' . $price . '" name="price" id="price">
+                                                    <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="submit">Apply</button>
+                                                </form>
+                                            </div>';
+                                        
+                                        // Check if a coupon code is provided
+                                        if (!empty($coupon_code)) {
+                                            // Discount logic
+                                            $query = mysqli_query($conn, "SELECT * FROM `coupon` WHERE `coupon_code` = '$coupon_code' && `status` = 'Valid'") or die(mysqli_error());
+                                            $count = mysqli_num_rows($query);
+                                            $fetch = mysqli_fetch_array($query);
+                                            $array = array();
+                                        
+                                            if ($count > 0) {
+                                                $discount = $fetch['discount'] / 100;
+                                                $totalDiscount = $discount * $price;
+                                                $discountedPrice = $price - $totalDiscount;
+                                        
+                                                // Display discounted subtotal
+                                                echo '<div class="checkout__total">
+                                                        <table class="checkout__total--table">
+                                                            <tbody class="checkout__total--body">
+                                                                <tr class="checkout__total--items">
+                                                                    <td class="checkout__total--title text-left">Subtotal </td>
+                                                                    <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>';
+                                            } else {
+                                                echo "Invalid Coupon Code!";
+                                            }
+                                        } else {
+                                            // Display original subtotal
+                                            echo '<div class="checkout__total">
+                                                    <table class="checkout__total--table">
+                                                        <tbody class="checkout__total--body">
+                                                            <tr class="checkout__total--items">
+                                                                <td class="checkout__total--title text-left">Subtotal </td>
+                                                                <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $price . '</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>';
+                                        }
+                                        
+                                    if (!empty($coupon_code)) {
+                                    // Discount logic
+                                    $query = mysqli_query($conn, "SELECT * FROM `coupon` WHERE `coupon_code` = '$coupon_code' && `status` = 'Valid'") or die(mysqli_error());
+                                    $count = mysqli_num_rows($query);
+                                    $fetch = mysqli_fetch_array($query);
+                                    if ($count > 0) {
+                                        // $price = $row['price'] ; 
+                                        $discount = $fetch['discount'] / 100;
+                                        $totalDiscount = $discount * $price;
+                                        $discountedPrice = $price - $totalDiscount;
+
+                                        // Display discounted shipping cost
+                                        echo '<tr class="checkout__total--items">
+                                                <h3><td class="checkout__total--title text-left" >Shipping</td></h5>  
+                                                <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                            </tr>';
+
+                                        // Display discounted subtotal
+                                        echo '<tfoot class="checkout__total--footer">
+                                                <tr class="checkout__total--footer__items">
+                                                    <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($discountedPrice + 100) . '</td>
+                                                </tr>
+                                            </tfoot>';
+                                    } else {
+                                        // Display original shipping cost
+                                        echo '<tr class="checkout__total--items">
+                                                <h3><td class="checkout__total--title text-left">Shipping</td></h5>  
+                                                <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                            </tr>';
+
+                                        // Display original total
+                                        echo '<tfoot class="checkout__total--footer">
+                                                <tr class="checkout__total--footer__items">
+                                                    <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                    <br><br>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($price + 100) . '</td>
+                                                </tr>
+                                            </tfoot>';
+                                    }
+                                } else {
+                                    // Display original shipping cost
+                                    '<br><br>';
+                                    echo '<tr class="checkout__total--items">
+                                            <h3><td class="checkout__total--title text-left">Shipping</td></h5>  
+                                            <td class="checkout__total--calculated__text text-right">Shipping payment for just rupees 100</td>
+                                        </tr>';
+
+                                    // Display original total
+                                    '<br><br>';
+                                    echo '<tfoot class="checkout__total--footer">
+                                            <tr class="checkout__total--footer__items">
+                                                <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($price + 100) . '</td>
+                                            </tr>
+                                        </tfoot>';
+                                }
+                            }
+                                    }else{
                                     $totalPrice = 0;
                                     $cartItems = array();
                     
@@ -263,7 +410,7 @@ include("header.php");
                                                             <tbody class="checkout__total--body">
                                                                 <tr class="checkout__total--items">
                                                                     <td class="checkout__total--title text-left">Subtotal </td>
-                                                                    <td class="checkout__total--amount text-right" id="total">Pkr: ' . $discountedPrice . '</td>
+                                                                    <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -278,7 +425,8 @@ include("header.php");
                                                         <tbody class="checkout__total--body">
                                                             <tr class="checkout__total--items">
                                                                 <td class="checkout__total--title text-left">Subtotal </td>
-                                                                <td class="checkout__total--amount text-right" id="total">Pkr: ' . $totalPrice . '</td>
+                                                                <br>
+                                                                <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $totalPrice . '</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -307,7 +455,7 @@ include("header.php");
                                         echo '<tfoot class="checkout__total--footer">
                                                 <tr class="checkout__total--footer__items">
                                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($discountedPrice + 100) . '</td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($discountedPrice + 100) . '</td>
                                                 </tr>
                                             </tfoot>';
                                     } else {
@@ -321,7 +469,7 @@ include("header.php");
                                         echo '<tfoot class="checkout__total--footer">
                                                 <tr class="checkout__total--footer__items">
                                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($totalPrice + 100) . '</td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
                                                 </tr>
                                             </tfoot>';
                                     }
@@ -336,10 +484,12 @@ include("header.php");
                                     echo '<tfoot class="checkout__total--footer">
                                             <tr class="checkout__total--footer__items">
                                                 <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Pkr: ' . ($totalPrice + 100) . '</td>
+                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
                                             </tr>
                                         </tfoot>';
                                 }
+                                
+                        }
                                 ?>   
                                 <!-- Discount Work End -->
                                 </table>
@@ -357,6 +507,7 @@ include("header.php");
                     </div>
                     
                 </div>
+                </form>
             </div>
         </div>
         </div>
