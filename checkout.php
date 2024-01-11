@@ -157,6 +157,7 @@ include("header.php");
                                     <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="checkout">Checkout Now</button>
                                     <a class="previous__link--content" href="cart.php">Return to cart</a>
                                 </div>
+                </form>
                             
                         </div>
                     </div>
@@ -507,7 +508,6 @@ include("header.php");
                     </div>
                     
                 </div>
-                </form>
             </div>
         </div>
         </div>
