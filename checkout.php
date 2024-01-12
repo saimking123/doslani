@@ -1,6 +1,8 @@
 <?php
 include("connection/connection.php");
 include("header.php");
+
+
 ?>
     
     <main class="main__content_wrapper">
@@ -157,7 +159,7 @@ include("header.php");
                                     <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="checkout">Checkout Now</button>
                                     <a class="previous__link--content" href="cart.php">Return to cart</a>
                                 </div>
-                </form>
+             
                             
                         </div>
                     </div>
@@ -255,12 +257,13 @@ include("header.php");
                                         
                                         // Your existing HTML and form code
                                         echo '<div class="checkout__discount--code">
-                                                <form class="d-flex" action="" method="post">
-                                                    <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
-                                                    <input type="hidden" value="' . $price . '" name="price" id="price">
-                                                    <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="submit">Apply</button>
-                                                </form>
-                                            </div>';
+                                        <form class="d-flex" id="couponForm" action="" method="post">
+                                            <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
+                                            <input type="hidden" value="' . $price . '" name="price" id="price">
+                                            <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="button">Apply</button>
+                                        </form>
+                                        
+                                      </div>';
                                         
                                         // Check if a coupon code is provided
                                         if (!empty($coupon_code)) {
@@ -280,9 +283,11 @@ include("header.php");
                                                         <table class="checkout__total--table">
                                                             <tbody class="checkout__total--body">
                                                                 <tr class="checkout__total--items">
-                                                                    <td class="checkout__total--title text-left">Subtotal </td>
+                                                                    <td class="checkout__total--title text-left">Subtotal</td>
+                                                                    <div id="result">
                                                                     <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
-                                                                </tr>
+                                                                    </div>
+                                                                    </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>';
@@ -296,8 +301,10 @@ include("header.php");
                                                         <tbody class="checkout__total--body">
                                                             <tr class="checkout__total--items">
                                                                 <td class="checkout__total--title text-left">Subtotal </td>
+                                                                <div id="result">
                                                                 <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $price . '</td>
-                                                            </tr>
+                                                                </div>
+                                                                </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>';
@@ -385,12 +392,14 @@ include("header.php");
                                         
                                         // Your existing HTML and form code
                                         echo '<div class="checkout__discount--code">
-                                                <form class="d-flex" action="" method="post">
-                                                    <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
-                                                    <input type="hidden" value="' . $totalPrice . '" name="price" id="price">
-                                                    <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate"  type="submit">Apply</button>
-                                                </form>
-                                            </div>';
+                                        <form class="d-flex" id="couponForm" action="" method="post">
+                                            <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
+                                            <div id="result">
+                                            <input type="hidden" value="' . $totalPrice . '" name="price" id="price">
+                                            </div>
+                                            <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="button">Apply</button>
+                                        </form>
+                                      </div>';
                                         
                                         // Check if a coupon code is provided
                                         if (!empty($coupon_code)) {
@@ -411,8 +420,10 @@ include("header.php");
                                                             <tbody class="checkout__total--body">
                                                                 <tr class="checkout__total--items">
                                                                     <td class="checkout__total--title text-left">Subtotal </td>
+                                                                    <div id="result"
                                                                     <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
-                                                                </tr>
+                                                                </div>
+                                                                    </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>';
@@ -427,8 +438,10 @@ include("header.php");
                                                             <tr class="checkout__total--items">
                                                                 <td class="checkout__total--title text-left">Subtotal </td>
                                                                 <br>
+                                                                <div id="result">
                                                                 <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $totalPrice . '</td>
-                                                            </tr>
+                                                            </div>
+                                                                </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>';
@@ -470,8 +483,11 @@ include("header.php");
                                         echo '<tfoot class="checkout__total--footer">
                                                 <tr class="checkout__total--footer__items">
                                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                    
+                                                    <div id="result">
                                                     <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
-                                                </tr>
+                                                    </div>
+                                                    </tr>
                                             </tfoot>';
                                     }
                                 } else {
@@ -485,8 +501,10 @@ include("header.php");
                                     echo '<tfoot class="checkout__total--footer">
                                             <tr class="checkout__total--footer__items">
                                                 <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
+                                                <div id="result">
                                                 <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
-                                            </tr>
+                                            </div>
+                                                </tr>
                                         </tfoot>';
                                 }
                                 
@@ -506,7 +524,7 @@ include("header.php");
                             </div>
                         </aside>
                     </div>
-                    
+                    </form>
                 </div>
             </div>
         </div>
@@ -514,7 +532,27 @@ include("header.php");
         
 
 
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#activate").click(function() {
+        var couponCode = $("#coupon").val();
+        var price = $("#price").val();
 
+        $.ajax({
+            type: "POST",
+            url: "get_discount.php", // Replace with the actual PHP processing file
+            data: { coupon: couponCode, price: price },
+            success: function(response) {
+                $("#result").html(response);
+            },
+            error: function(error) {
+                console.error("unknown copen code:", error);
+            }
+        });
+    });
+});
+</script>
 
         <!-- End checkout page area -->
 
