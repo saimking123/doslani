@@ -45,8 +45,8 @@ include("header.php");
                         <h4 class="minicart__subtitle"><a href="product-details.html"><?php echo $item['name'];?></a></h4>
                         <span class="color__variant"><b>Color:</b> yellow</span>
                         <div class="minicart__price">
-                            <span class="minicart__current--price">$<?php echo $item['price'];?></span>
-                            <span class="minicart__old--price">$<?php echo $item['price']; ?></span>
+                            <span class="minicart__current--price">Pkr<?php echo $item['price'];?></span>
+                            <span class="minicart__old--price">Pkr<?php echo $item['price']; ?></span>
                         </div>
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">

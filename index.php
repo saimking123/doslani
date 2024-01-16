@@ -175,10 +175,11 @@ foreach ($query_connect as $rows) {
                 // $selectquery = "SELECT * from product LEFT JOIN subcategory_images on product_id = product.id ";     
                 $selectqueryconnect = mysqli_query($conn, $selectquery);
                 
-                foreach($selectqueryconnect as $rows ){                            
+                foreach($selectqueryconnect as $rows ){ 
+                  
                 ?>
+                
                         <div class="swiper-slide">
-                       
                             <article class="product__card">
                                 
                                 <div class="product__card--thumbnail">
@@ -186,7 +187,13 @@ foreach ($query_connect as $rows) {
                                         <img class="product__card--thumbnail__img product__primary--img" src="<?php echo str_replace('../', '', $rows["image"]); ?>" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img" src="<?php echo str_replace('../', '', $rows["subcategory_images"]); ?>" alt="product-img">
                                     </a>
-                                    <span class="product__badge">-14%</span>
+                                    <?php
+                                    if($rows['quantity']==0){
+                                    echo '<span class="product__badge">Out of stock</span>';
+                                    }else{
+                                    echo '<span class="product__badge">-14%</span>';
+                                    }
+                                    ?>
                                     <ul class="product__card--action d-flex align-items-center justify-content-center">
                                         <!-- <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Quick View" data-open="modal1" href="javascript:void(0)">
@@ -215,7 +222,7 @@ foreach ($query_connect as $rows) {
                                     </ul>
                                 </div>
                                 <div class="product__card--content">
-                                
+                                    
                                     <h3 class="product__card--title"><a href="product-details.php?pro_id=<?php echo $rows["id"] ?>">
                                      </a><?php $rows['name'];?></h3>
                                     <div class="product__card--price">

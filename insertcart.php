@@ -15,15 +15,23 @@ if(isset($_POST["add-to-cart"]))
     
       );
       
-    // $product = array($id,$name,$price,$quan,$img,$weight);
-
-    // print_r($product);
-    // $_SESSION['cart'][] = $product;
-
     header('location:index.php');
  
 }
 
+
+if(isset($_POST["add-to-wishlist"]))
+{
+    $_SESSION['wishlist'][]=array(
+        'id'=>$_POST['wishlist_id'],
+        'name'=>$_POST['wishlist_name'],
+        'price'=>$_POST['wishlist_price'],
+        'img'=>$_POST['wishlist_img'], 
+        'weigth'=>$_POST['weigth'], 
+      );
+      header('location:index.php');
+    }
+    
 
 if (isset($_GET['empty'])) {
     unset($_SESSION['cart']);

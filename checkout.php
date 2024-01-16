@@ -260,6 +260,7 @@ include("header.php");
                                         <form class="d-flex" id="couponForm" action="" method="post">
                                             <input class="checkout__discount--code__input--field border-radius-5" id="coupon" name="coupon" placeholder="Gift card or discount code" type="text">
                                             <input type="hidden" value="' . $price . '" name="price" id="price">
+                                            <br><br>
                                             <button class="checkout__discount--code__btn primary__btn border-radius-5" id="activate" type="button">Apply</button>
                                         </form>
                                         
@@ -279,18 +280,18 @@ include("header.php");
                                                 $discountedPrice = $price - $totalDiscount;
                                         
                                                 // Display discounted subtotal
-                                                echo '<div class="checkout__total">
-                                                        <table class="checkout__total--table">
-                                                            <tbody class="checkout__total--body">
-                                                                <tr class="checkout__total--items">
-                                                                    <td class="checkout__total--title text-left">Subtotal</td>
-                                                                    <div id="result">
-                                                                    <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
-                                                                    </div>
-                                                                    </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>';
+                                             echo '<div class="checkout__total">
+                                            <table class="checkout__total--table">
+                                                <tbody class="checkout__total--body">
+                                                    <tr class="checkout__total--items">
+                                                        <td class="checkout__total--title text-left">Subtotal</td>
+                                                        <div id="result">
+                                                        <td class="checkout__total--amount text-right" id="total" name="price">' . $discountedPrice . '</td>
+                                                        </div>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>';
                                             } else {
                                                 echo "Invalid Coupon Code!";
                                             }
@@ -488,7 +489,7 @@ include("header.php");
                                                     <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
                                                     </div>
                                                     </tr>
-                                            </tfoot>';
+                                                </tfoot>';
                                     }
                                 } else {
                                     // Display original shipping cost

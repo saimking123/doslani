@@ -185,7 +185,7 @@ session_start();
                                         <li class="header__sub--menu__items"><a href="about.html" class="header__sub--menu__link">About Us</a></li>
                                         <li class="header__sub--menu__items"><a href="contact.php" class="header__sub--menu__link">Contact Us</a></li>
                                         <li class="header__sub--menu__items"><a href="cart.php" class="header__sub--menu__link">Cart Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="wishlist.html" class="header__sub--menu__link">Wishlist Page</a></li>
+                                        <li class="header__sub--menu__items"><a href="wishlist.php" class="header__sub--menu__link">Wishlist Page</a></li>
                                         <li class="header__sub--menu__items"><a href="privacy-policy.html" class="header__sub--menu__link">Privacy Policy</a></li>
                                         <li class="header__sub--menu__items"><a href="login.html" class="header__sub--menu__link">Login Page</a></li>
                                     </ul>
@@ -212,9 +212,9 @@ session_start();
                                 </a>
                             </li>
                             <li class="header__account--items d-none d-lg-block">
-                                <a class="header__account--btn" href="wishlist.html">
+                                <a class="header__account--btn" href="wishlist.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                    <span class="items__count">3</span> 
+                                    <span class="items__count"><?php if(isset($_SESSION["wishlist"])){echo count($_SESSION["wishlist"]);} else{echo '0';}?></span> 
                                 </a>
                             </li>
                             <li class="header__account--items header__minicart--items">
@@ -274,9 +274,9 @@ session_start();
                                 </a>
                             </li>
                             <li class="header__account--items d-none d-lg-block">
-                                <a class="header__account--btn" href="wishlist.html">
+                                <a class="header__account--btn" href="wishlist.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                                    <span class="items__count">3</span> 
+                                    <span class="items__count"><?php if(isset($_SESSION["wishlist"])){echo count($_SESSION["wishlist"]);} else{echo '0';}?></span> 
                                 </a>
                             </li>
                             <li class="header__account--items header__minicart--items">

@@ -120,10 +120,20 @@ if (isset($_GET["pro_id"])) {
                                     <input type="hidden" name="id" value="<?php echo $rows["id"] ?>">
                                     <input type="hidden" name="name" value="<?php echo $rows["name"] ?>">
                                     <input type="hidden" name="price" value="<?php echo $rows["price"] ?>">
-
                                     <input type="hidden" name="img" value="<?php echo $rows["image"] ?>">
                                     
                                     <h2 class="product__details--info__title mb-15" ><?php echo $rows['name']; ?> </h2>
+                                    <?php
+                                    if($rows['quantity']== 0){
+                                     echo ' <div class="product__details--info__price mb-12">
+                                        <span style="color:red;">Out of stock</span>';
+                                    }else{
+                                        echo ' <div class="product__details--info__price mb-12">
+                                        <span style="color:green;" >In stock</span>';
+                                    }
+                                    ?>
+                                    
+                                </div>
 
                                 <div class="product__details--info__price mb-12">
                                     <span class="current__price" name="price" ><?php echo 'Pkr '. $rows ['price']; ?></span>
@@ -213,13 +223,26 @@ if (isset($_GET["pro_id"])) {
                                             </label>
                                             <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
                                         </div>
-                                        <button class="primary__btn quickview__cart--btn" type="submit" value="id" name="add-to-cart">Add To Cart</button>  
-                                    </div>
+                                        <?php
+                                    if($rows['quantity']== 0){
+                                      echo '<button class="primary__btn quickview__cart--btn" type="submit" value="id" name="add-to-cart" disabled>Add To Cart</button>'; 
+                                    }else{
+                                      echo '<button class="primary__btn quickview__cart--btn" type="submit" value="id" name="add-to-cart">Add To Cart</button>'; 
+                                    }
+                                    ?>
+                                        </div>
+                                    
                                     <div class="product__variant--list mb-15">
-                                        <a class="variant__wishlist--icon mb-15" href="wishlist.html" title="Add to wishlist" name="add-to-wishlist">
+                                        <form action="addwishlist.php" method="post">
+                                    <input type="hidden" name="wishlist_id" value="<?php echo $rows["id"] ?>">
+                                    <input type="hidden" name="wishlist_name" value="<?php echo $rows["name"] ?>">
+                                    <input type="hidden" name="wishlist_price" value="<?php echo $rows["price"] ?>">
+                                    <input type="hidden" name="wishlist_img" value="<?php echo $rows["image"] ?>">
+                                    <button class="primary__btn quickview__cart--btn"" type="submit" title="Add to wishlist" value="wishlist_id" name="add-to-wishlist">
                                             <svg class="quickview__variant--wishlist__svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
                                             Add to Wishlist
-                                        </a>
+                                </button>
+                                </form>
                                        <button class="now__btn primary__btn" type="submit" name=""><a href="checkout.php?pro_id=<?php echo $rows["id"] ?>">Buy it now</button></a>
                                     </div>
                                     <div class="product__variant--list mb-15">
@@ -474,9 +497,16 @@ if (isset($_GET["pro_id"])) {
                                         <img class="product__card--thumbnail__img product__primary--img" src="<?php echo str_replace('../', '', $rows["image"]); ?>" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img" src="<?php echo str_replace('../', '', $rows["subcategory_images"]); ?>" alt="product-img">
                                     </a>
-                                    <span class="product__badge">-14%</span>
+                                    <?php
+                                                if($rows['quantity']==0){
+                                               echo' <span class="product__badge">out of stock</span>';
+                                            }else{
+                                                echo'<span class="product__badge">-14%</span>';
+                                                
+                                            }
+                                                ?>
                                     <ul class="product__card--action d-flex align-items-center justify-content-center">
-                                        <li class="product__card--action__list">
+                                        <!-- <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Quick View" data-open="modal1" href="javascript:void(0)">
                                                 <svg class="product__card--action__btn--svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z" fill="currentColor"></path>
@@ -491,7 +521,7 @@ if (isset($_GET["pro_id"])) {
                                                 </svg>
                                                 <span class="visually-hidden">Compare</span>    
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Wishlist" href="wishlist.html">
                                                 <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -504,8 +534,8 @@ if (isset($_GET["pro_id"])) {
                                 </div>
                                 <div class="product__card--content">
                                 
-                                    <h3 class="product__card--title"><a href="product-details.php?pro_id=<?php echo $rows["id"] ?>"><?php $rows['name'];?>
-                                        Camera </a></h3>
+                                <h3 class="product__card--title"><a href="product-details.php?pro_id=<?php echo $rows["id"] ?>">
+                                     </a><?php $rows['name'];?></h3>
                                     <div class="product__card--price">
                                         <span class="current__price"><?php 'PKR'. $rows['price'];?></span>
                                         <span class="old__price"><?php 'PKR'. $rows['price'];?></span>
