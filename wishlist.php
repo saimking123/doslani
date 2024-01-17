@@ -37,22 +37,20 @@ include("connection/connection.php");
                                         <th class="cart__table--header__list">Product</th>
                                         <th class="cart__table--header__list">Price</th>
                                         <th class="cart__table--header__list text-center">STOCK STATUS</th>
-                                        <th class="cart__table--header__list text-right">ADD TO CART</th>
+                                        <!-- <th class="cart__table--header__list text-right">ADD TO CART</th> -->
                                     </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
-                                    
-                                    <tr class="cart__table--body__items">
-                                    <?php
-                                     if (isset($_SESSION['cart'])) {
-                                        foreach ($_SESSION['cart'] as $k => $item) {
-                                            $itemPrice = $item['price'] * $item['quan'];
-                                            $totalPrice += $itemPrice;
+                                <?php
+                                     if (isset($_SESSION['wishlist'])) {
+                                        foreach ($_SESSION['wishlist'] as $k => $item) {
+                                            // $itemPrice = $item['price'] * $item['quan'];
+                                            // $totalPrice += $itemPrice;
                                 
                                             // Check if this item is already in cartItems
                                             if (isset($cartItems[$item['id']])) {
                                                 // If it is, update the quantity
-                                                $cartItems[$item['id']]['quan'] += $item['quan'];
+                                                // $cartItems[$item['id']]['quan'] += $item['quan'];
                                             } else {
                                                 // If not, add it to cartItems
                                                 $cartItems[$item['id']] = $item;
@@ -60,52 +58,54 @@ include("connection/connection.php");
                                         }
                                     }
                                     foreach ($cartItems as $item) {
-                                        $itemPrice = $item['price'] * $item['quan'];
-                                    ?>
-                                        <td class="cart__table--body__list">
-                                            <div class="cart__product d-flex align-items-center">
-                                                <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="16px" height="16px"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/></svg>
-                                                </button>
-                                                <div class="cart__thumbnail">
-                                                <a href="product-details.html"><img  src="<?php echo $item['img'];?>" alt="cart-product"></a>
-                                                </div>
-                                                <div class="cart__content">
-                                                    <h3 class="cart__content--title h4"><a href="product-details.html"><?php echo $item['name'];?></a></h3>
-                                                    <span class="cart__content--variant">COLOR: Blue</span>
-                                                    <span class="cart__content--variant">WEIGHT: <?php echo $item['weigth'];?></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">Pkr: <?php echo $item['price'];?></span>
-                                        </td>
-                                        <td class="cart__table--body__list text-center">
-                                            <?php
-                                            $query = "select * from product";
-                                            $queryconnect = mysqli_query($conn,$query);
-                                            foreach($queryconnect as $rows){
-                                            ?>
-                                            <?php
-                                            if($rows['quantity']== 0){
-                                                echo'<span class="in__stock text__secondary">Out of stock</span>';
-                                            }else{
-                                           echo'<span style="color:green">In stock</span>';
-
-                                            }
-                                            ?>
-                                        <?php
-                                        }
+                                        // $itemPrice = $item['price'] * $item['quan'];
                                         ?>
-                                        </td>
-                                        <td class="cart__table--body__list text-right">
-                                            <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
-                                        </td>
-                                        <?php
+                                        <tr class="cart__table--body__items">
+                                            <td class="cart__table--body__list">
+                                                <div class="cart__product d-flex align-items-center">
+                                                    <button class="cart__remove--btn" aria-label="search button" type="button">
+                                                    <a href="wishlist.php?remove=<?php echo $item['id']; ?>">
+                                                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="16px" height="16px"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/></svg>
+                                                    </button>
+                                                    <div class="cart__thumbnail">
+                                                        <a href="product-details.html"><img src="<?php echo str_replace('../', '', $item['img']); ?>" alt="cart-product"></a>
+                                                    </div>
+                                                    <div class="cart__content">
+                                                        <h3 class="cart__content--title h4"><a href="product-details.html"><?php echo $item['name'];?></a></h3>
+                                                        <span class="cart__content--variant">COLOR: Blue</span>
+                                                        <span class="cart__content--variant">WEIGHT: <?php echo $item['weigth'];?></span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="cart__table--body__list">
+                                                <span class="cart__price">Pkr: <?php echo $item['price'];?></span>
+                                            </td>
+                                            <td class="cart__table--body__list text-center">
+    <?php
+    // Fetch data for the specific product in the current cart item
+    $query = "SELECT * FROM product WHERE  id = {$item['id']}";
+    $queryconnect = mysqli_query($conn, $query);
+
+    // Check quantity and display stock status
+    if ($row = mysqli_fetch_array($queryconnect)) {
+        if ($row['quantity'] == 0) {
+            echo '<span class="text__secondary">Out of stock</span>';
+        } else {
+            // Display the "Add to Cart" button only if the product is in stock
+            ?>
+            <form action="cart.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+                <button class="wishlist__cart--btn primary__btn" type="submit" name="add-to-cart">Add To Cart</button>
+            </form>
+            <?php
+        }
+    }
+    ?>
+</td>   
+                                    </tr>
+                                    <?php
                                     }
                                     ?>
-                                    </tr>
-                                    
                                 </tbody>
                             </table> 
                             <div class="continue__shopping d-flex justify-content-between">
@@ -118,7 +118,16 @@ include("connection/connection.php");
             </div>     
         </section>
         <!-- cart section end -->
-
+       <?php
+        if (isset($_GET['remove'])) {
+    $id = $_GET['remove'];
+    foreach ($_SESSION['wishlist'] as $k => $part) {
+        if ($id == $part['id']) {
+            unset($_SESSION['wishlist'][$k]);
+        }
+    }
+}
+?>
         <!-- Start product section -->
 
 

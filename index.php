@@ -38,6 +38,7 @@ include("connection/connection.php");
                     </span>
                 </div>
             </div>	
+
             <div class="loader-section section-left"></div>
             <div class="loader-section section-right"></div>
         </div>

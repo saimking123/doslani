@@ -202,7 +202,7 @@ session_start();
                             <li class="header__account--items d-none d-lg-block">
                                 <a class="header__account--btn" href="my-account.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <span class="visually-hidden">My account</span> 
+                                    <span class="visually-hidden">My account<?php echo $_SESSION["email"]; ?></span> 
                                 </a>
                             </li>
                             <li class="header__account--items  header__account--search__items mobile__d--block d-sm-2-none">
@@ -247,9 +247,7 @@ session_start();
                         }
                     }
                 ?>
-                               <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}
-
-                                    ?></span> 
+                               <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}?></span> 
                                     <span class="minicart__btn--text">My Cart <br> <span class="minicart__btn--text__price"><?php echo  'Pkr'. $totalPrice ?> </span></span>
 
                                     <?php
@@ -290,8 +288,7 @@ session_start();
                                         </g>
                                         </g>
                                     </svg>
-                                    <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}
-                                         ?> </span> 
+                                    <span class="items__count"><?php if(isset($_SESSION["cart"])){echo count($_SESSION["cart"]);} else{echo '0';}?> </span> 
                                 </a>
                             </li>
                         </ul>
@@ -534,7 +531,7 @@ session_start();
                         <svg class="minicart__close--icon" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512"><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
                     </button>
                 </div>
-                <p class="minicart__header--desc">The organic foods products are limited</p>
+                <p class="minicart__header--desc">Best products</p>
             </div>
             <?php
 
@@ -543,11 +540,11 @@ session_start();
 
     if (isset($_GET['remove'])) {
         $id = $_GET['remove'];
-        foreach ($_SESSION['cart'] as $k => $part) {
-            if ($id == $part['id']) {
-                unset($_SESSION['cart'][$k]);
-            }
-        }
+        // foreach ($_SESSION['cart'] as $k => $part) {
+        //     if ($id == $part['id']) {
+        //         unset($_SESSION['cart'][$k]);
+        //     }
+        // }
     }
 
                 $totalPrice = 0;
