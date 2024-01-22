@@ -23,6 +23,9 @@ if(isset($_POST['register'])){
                 $sql="INSERT INTO user(name,email,password) VALUES('$name','$email','$password')";
                 $res=mysqli_query($conn,$sql);
                 if($res){
+                    session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["namevar"] = $row["name"];
                     echo "<script>alert('welcome to our website!')</script>";  
                     header("location:index.php");
 

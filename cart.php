@@ -208,8 +208,8 @@ if (isset($_POST['update'])) {
             <div class="cart__product d-flex align-items-center">
                 <button class="cart__remove--btn" aria-label="search button">
                     <a href="cart.php?remove=<?php echo $item['id']; ?>">
-                         <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
-                                                                    <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/>
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
+                    <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"/>
                         </svg>
                     </a>
                 </button>
@@ -265,10 +265,14 @@ if (isset($_POST['update'])) {
                                         <h3 class="coupon__code--title">Coupon</h3>
                                         <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
                                         <div class="coupon__code--field d-flex">
+                                            <form action="">
                                             <label>
-                                                <input class="coupon__code--field__input border-radius-5" placeholder="Coupon code" type="text">
+                                                <input class="coupon__code--field__input border-radius-5" placeholder="Coupon code" name="coupon"  type="text">
+				                            <input type="hidden" value="<?php echo $totalPrice?>" id="price"/>
+
+                                            
                                             </label>
-                                            <button class="coupon__code--field__btn primary__btn" type="submit">Apply Coupon</button>
+                                            <button class="coupon__code--field__btn primary__btn" type="submit"  id='activate'>Apply Coupon</button>
                                         </div>
                                     </div>
                                     <div class="cart__note mb-20">
@@ -300,11 +304,15 @@ if (isset($_POST['update'])) {
                                             echo '<tbody>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                                    <td class="cart__summary--amount text-right"> Pkr: ' . $totalPrice . '</td>
+				                            <div id="result"></div>
+
+                                                    <td class="cart__summary--amount text-right " id="total"> Pkr: ' . $totalPrice . '</td>
                                                 </tr>
                                             </tbody>';
                                             ?>
-                                            
+                                            </form>
+                                            <!-- <script type="text/javascript"> -->
+	
                                         </table>
                                     </div>
                                     <div class="cart__summary--footer">
@@ -465,7 +473,7 @@ if (isset($_POST['update'])) {
             </div>
         </section>
         <!-- End shipping section -->
-
+        
     </main>
                     <?php
             include("footer.php")
@@ -492,3 +500,28 @@ if (isset($_POST['update'])) {
 
 <!-- Mirrored from risingtheme.com/html/demo-partsix/partsix/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Dec 2023 15:19:12 GMT -->
 </html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#activate').on('click', function(){
+			var coupon = $('#coupon').val();
+			var price = $('#price').val();
+			if(coupon == ""){
+				alert("Please enter a coupon code!");
+			}else{
+				$.post('get_discount.php', {coupon: coupon, price: price}, function(data){
+					if(data == "error"){
+						alert("Invalid Coupon Code!");
+						$('#total').val(price);
+						$('#result').html('');
+					}else{
+						var json = JSON.parse(data);
+						$('#result').html("<h4 class='pull-right text-danger'>"+json.discount+"% Off</h4>");
+						$('#total').val(json.price);
+					}
+				});
+			}
+		});
+	});
+</script>   

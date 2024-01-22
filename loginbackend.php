@@ -1,6 +1,6 @@
 <?php
 include("connection/connection.php");
-session_start();
+// session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
@@ -18,15 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result) {
         $row = mysqli_fetch_array($result);
-
+        session_start();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["namevar"] = $row["name"];
         if ($row) {
             if ($row['role'] == 0) {
                 header("location:index.php");
-                $_SESSION["email"] = $email;
+                
                 echo "user";
             } elseif ($row['role'] == 1) {
                 header("location:admin/index.php");
-                $_SESSION["email"] = $email;
+                // $_SESSION["loggedin"] = true;
+                // $_SESSION["namevar"] = $row["name"];
             } else {
                 echo "Username or password incorrect";
             }

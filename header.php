@@ -187,7 +187,7 @@ session_start();
                                         <li class="header__sub--menu__items"><a href="cart.php" class="header__sub--menu__link">Cart Page</a></li>
                                         <li class="header__sub--menu__items"><a href="wishlist.php" class="header__sub--menu__link">Wishlist Page</a></li>
                                         <li class="header__sub--menu__items"><a href="privacy-policy.html" class="header__sub--menu__link">Privacy Policy</a></li>
-                                        <li class="header__sub--menu__items"><a href="login.html" class="header__sub--menu__link">Login Page</a></li>
+                                        <li class="header__sub--menu__items"><a href="login.php" class="header__sub--menu__link">Login Page</a></li>
                                     </ul>
                                 </li>
                                 <li class="header__menu--items">
@@ -197,12 +197,83 @@ session_start();
                             </ul>
                         </nav>
                     </div>
-                    <div class="header__account header__sticky--none">
+                        <?php
+                        // $_SESSION['namevar'] = '';
+                     if(isset($_SESSION["namevar"])){ 
+                    
+                    echo '<div class="header__account header__sticky--none">
                         <ul class="header__account--wrapper d-flex align-items-center">
                             <li class="header__account--items d-none d-lg-block">
                                 <a class="header__account--btn" href="my-account.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <span class="visually-hidden">My account<?php echo $_SESSION["email"]; ?></span> 
+                                 <span class="visually-hidden">My account</span>
+                                    <div class="dropdown"> '.$_SESSION['namevar'].'
+                                    <div class="dropdown-content">
+                                        <a href="logout.php">Logout</a>
+                                    </div>
+                                    </div>';
+                   
+                                }else{
+                                
+                       echo' <div class="header__account header__sticky--none">
+                        <ul class="header__account--wrapper d-flex align-items-center">
+                            <li class="header__account--items d-none d-lg-block">
+                                <a class="header__account--btn" href="login.php">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                  <span class="visually-hidden">My account</span> ';
+
+                           
+                                }
+                                ?>
+                    
+
+
+
+
+<style>
+    .dropbtn {
+  background-color: red;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+                                    </style>
+                                     
+                                    
                                 </a>
                             </li>
                             <li class="header__account--items  header__account--search__items mobile__d--block d-sm-2-none">
@@ -265,12 +336,30 @@ session_start();
                                     <span class="visually-hidden">Search</span>  
                                 </a>
                             </li>
-                            <li class="header__account--items d-none d-lg-block">
+                            <?php
+                        // $_SESSION['namevar'] = '';
+                        if(isset($_SESSION["namevar"])){ 
+                    
+                          echo'<li class="header__account--items d-none d-lg-block">
                                 <a class="header__account--btn" href="my-account.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    <span class="visually-hidden">My account</span> 
-                                </a>
-                            </li>
+                                 <span class="visually-hidden">My account</span>
+                                    <div class="dropdown"> '.$_SESSION['namevar'].'
+                                    <div class="dropdown-content">
+                                        <a href="logout.php">Logout</a>
+                                    </div>
+                                    </div>';
+                   
+                                }else{
+                                   echo'<li class="header__account--items d-none d-lg-block">
+                                <a class="header__account--btn" href="login.php">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                  <span class="visually-hidden">My account</span> ';
+
+                           
+                                }
+                                ?>
+
                             <li class="header__account--items d-none d-lg-block">
                                 <a class="header__account--btn" href="wishlist.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -406,7 +495,7 @@ session_start();
                                             <li class="header__sub--menu__items"><a href="cart.php" class="header__sub--menu__link">Cart Page</a></li>
                                             <li class="header__sub--menu__items"><a href="wishlist.html" class="header__sub--menu__link">Wishlist Page</a></li>
                                             <li class="header__sub--menu__items"><a href="privacy-policy.html" class="header__sub--menu__link">Privacy Policy</a></li>
-                                            <li class="header__sub--menu__items"><a href="login.html" class="header__sub--menu__link">Login Page</a></li>
+                                            <li class="header__sub--menu__items"><a href="login.php" class="header__sub--menu__link">Login Page</a></li>
                                            
                                         </ul>
                                     </li>
@@ -445,14 +534,14 @@ session_start();
                                 <li class="offcanvas__sub_menu_li"><a href="contact.php" class="offcanvas__sub_menu_item">Contact Us</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="cart.php" class="offcanvas__sub_menu_item">Cart Page</a></li>
                                 <li class="offcanvas__sub_menu_li"><a href="wishlist.html" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="login.html" class="offcanvas__sub_menu_item">Login Page</a></li>
+                                <li class="offcanvas__sub_menu_li"><a href="login.php" class="offcanvas__sub_menu_item">Login Page</a></li>
                             </ul>
                         </li>
                         <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="about.html">About</a></li>
                         <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="contact.php">Contact</a></li>
                     </ul>
                     <div class="offcanvas__account--items">
-                        <a class="offcanvas__account--items__btn d-flex align-items-center" href="login.html">
+                        <a class="offcanvas__account--items__btn d-flex align-items-center" href="login.php">
                             <span class="offcanvas__account--items__icon"> 
                                 <svg xmlns="http://www.w3.org/2000/svg"  width="20.51" height="19.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
                             </span>
