@@ -1,9 +1,11 @@
 <?php
 include("connection/connection.php");
 // include("header.php");
+session_start();
 ?>
 
 <?php
+
 if(isset($_POST['checkout'])) {
   $fullname = $_POST['fullname'];
   $email = $_POST['email'];
@@ -58,7 +60,6 @@ if(isset($_POST['checkout'])) {
   }
  var_dump($query);
  
-
 ?>
 
 <?php

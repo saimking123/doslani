@@ -286,6 +286,7 @@ include("header.php");
                                                     <tr class="checkout__total--items">
                                                         <td class="checkout__total--title text-left">Subtotal</td>
                                                         <div id="result">
+                                                        
                                                         <td class="checkout__total--amount text-right" id="total" name="price">' . $discountedPrice . '</td>
                                                         </div>
                                                     </tr>
@@ -420,10 +421,9 @@ include("header.php");
                                                         <table class="checkout__total--table">
                                                             <tbody class="checkout__total--body">
                                                                 <tr class="checkout__total--items">
-                                                                    <td class="checkout__total--title text-left">Subtotal </td>
-                                                                    <div id="result"
+                                                                    <td class="checkout__total--title text-left">Subtotal </td>   
                                                                     <td class="checkout__total--amount text-right" id="total" name="price">Pkr: ' . $discountedPrice . '</td>
-                                                                </div>
+                                                                
                                                                     </tr>
                                                             </tbody>
                                                         </table>
@@ -475,7 +475,7 @@ include("header.php");
                                         echo '<tfoot class="checkout__total--footer">
                                                 <tr class="checkout__total--footer__items">
                                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($discountedPrice + 100) . '</td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price" id="total">Pkr: ' . ($discountedPrice + 100) . '</td>
                                                 </tr>
                                             </tfoot>';
                                     } else {
@@ -491,7 +491,7 @@ include("header.php");
                                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
                                                     
                                                     <div id="result">
-                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
+                                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price" id="total " +100>Pkr: ' .  '</td>
                                                     </div>
                                                     </tr>
                                                 </tfoot>';
@@ -507,9 +507,9 @@ include("header.php");
                                     echo '<tfoot class="checkout__total--footer">
                                             <tr class="checkout__total--footer__items">
                                                 <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                                <div id="result">
-                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price">Pkr: ' . ($totalPrice + 100) . '</td>
-                                            </div>
+                                                
+                                                <td class="checkout__total--footer__amount checkout__total--footer__list text-right" name="price" id="total +100">Pkr: ' . ($totalPrice + 100) . '</td>
+                                            
                                                 </tr>
                                         </tfoot>';
                                 }
@@ -550,7 +550,14 @@ $(document).ready(function() {
             url: "get_discount.php", // Replace with the actual PHP processing file
             data: { coupon: couponCode, price: price },
             success: function(response) {
-                $("#result").html(response);
+                var jsonResponse = JSON.parse(response);
+
+                // Get the price value
+                var discountedPrice = jsonResponse.price;
+
+                // Display the price in the HTML response
+                $("#total").html(discountedPrice);
+               // $("#result").html(response);
             },
             error: function(error) {
                 console.error("unknown copen code:", error);
@@ -605,6 +612,8 @@ $(document).ready(function() {
                 </div>
             </div>
         </section>
+
+        
         <!-- End shipping section -->
     </main>
 

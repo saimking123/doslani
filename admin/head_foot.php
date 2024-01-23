@@ -48,6 +48,22 @@ session_start();
             <span class="links_name">Dashboard</span>
           </a>
         </li>
+
+        <li>
+          <a href="users.php">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Users</span>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="coupon.php">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Create coupons</span>
+          </a>
+        </li>
+
         <li>
           <a href="fetch_product.php">
             <i class="bx bx-box"></i>
@@ -73,14 +89,6 @@ session_start();
             <span class="links_name">Category fetch</span>
           </a>
         </li>
-
-
-        <!-- <li>
-          <a href="gallery_image.php">
-            <i class="bx bx-list-ul"></i>
-            <span class="links_name">Insert gallery product Images</span>
-          </a>
-        </li> -->
 
         <li>
           <a href="Comment_fetch.php">
