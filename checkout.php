@@ -156,7 +156,7 @@ include("header.php");
                                    <textarea class="checkout__notes--textarea__field border-radius-5" id="order" name="order_notes" placeholder="Notes about your order, e.g. special notes for delivery." spellcheck="false"></textarea>
                                 </div>
                                 <div class="checkout__content--step__footer d-flex align-items-center">
-                                    <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="checkout">Checkout Now</button>
+                                    <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="placeholderbtn">Checkout Now</button>
                                     <a class="previous__link--content" href="cart.php">Return to cart</a>
                                 </div>
              
@@ -186,13 +186,13 @@ include("header.php");
                                                         <span class="product__thumbnail--quantity">' . $row[1] . '</span>
                                                     </div>
                                                     <div class="product__description">
-                                                        <h4 class="product__description--name"><a href="product-details.html">' . $row['name'] . '</a></h4>
+                                                        <h4 class="product__description--name"><a href="product-details.php?id=<?php echo $pro_id;?>">' . $row['name'] . '</a></h4>
                                                         <span class="product__description--variant">COLOR: Blue</span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="cart__table--body__list">
-                                                <span class="cart__price">PKR:' . $row['price'] . '</span>
+                                                <span class="cart__price" name="">PKR:' . $row['price'] . '</span>
                                             </td>
                                         </tr>';
                                     }
@@ -233,7 +233,7 @@ include("header.php");
                                             </div>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <span class="cart__price">PKR:' . $item['price'] . '</span>
+                                            <span class="cart__price" >PKR:' . $item['price'] . '</span>
                                         </td>
                                     </tr>';
                             }
@@ -535,8 +535,7 @@ include("header.php");
             </div>
         </div>
         </div>
-        
-
+  
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
@@ -643,6 +642,119 @@ $(document).ready(function() {
 </html>
 
 
+<?php
+if (isset($_POST['placeholderbtn'])) {
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $contactno = $_POST['contactno'];
+    $address = $_POST['address'];
+    $shipping_name = $_POST['shipping_name'];
+    $shipping_address = $_POST['shipping_address'];
+    $shipping_city = $_POST['shipping_city'];
+    $shipping_country = $_POST['shipping_country'];
+    $shipping_Postal_code = $_POST['shipping_postal_code'];
+    $shipping_email = $_POST['shipping_email'];
+    $shipping_contact = $_POST['shipping_contact'];
+    $country = $_POST['country'];
+    $city = $_POST['city'];
+    $postal_code = $_POST['shipping_postal_code'];
+    $order_notes = $_POST['order_notes'];
+    $order_status = 'inprocess';
+    $payment = 'cashOnDelivery';
+    $createdAt = date('Y-m-d H:i:s');
+    $updatedAt = date('Y-m-d H:i:s');
+    
+    // Initialize total price
+    $totalPrice = 0;
+  
+    
+  if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $item) {
+        if (isset($item['price'], $item['quan'])) {
+            $productPrice = $item['price'];
+            $qty = $item['quan'];
+            $itemPrice = $productPrice * $qty;
+            $totalPrice += $itemPrice;
+        }
+    }
+}
+    // Create a database connection (assuming $conn is a valid database connection)
+    $query = "INSERT INTO customer_orders (full_name, email,contactno, address,shipping_name,shipping_city,shipping_country,shipping_Postal_code,
+    shipping_address,shipping_email,shipping_contact, country, city, postal_code,Order_Notes, order_status, payment, total_price, created_at, updated_at)
+   VALUES ('$fullname', '$email', '$contactno', '$address', '$shipping_name','$shipping_address','$shipping_city', 
+   '$shipping_country', '$shipping_Postal_code', '$shipping_email', '$shipping_contact', '$country','$city','$postal_code',
+   '$order_notes','$order_status','$payment', '$totalPrice', '$createdAt', '$updatedAt')";
+    
+    $queryconnect = mysqli_query($conn, $query);
+  
+    if ($queryconnect) {
+        echo 'Record has been inserted';
+    } else {
+        echo 'Query error: ' . mysqli_error($conn);
+    }
+  ?>
+  <?php
+
+if (isset($_POST['placeholderbtn'])) {
+   
+  
+  $order_id = mysqli_insert_id($conn);
+
+  var_dump($order_id);
+    // Insert each item in the cart into the 'order_details' table
+    foreach ($cartItems as $item) {
+        $productId = $item['id'];
+        $itemName = $item['name'];
+        $productPrice = $item['price'];
+        $quantity = $item['quan'];
+        $itemTotalPrice = $productPrice * $quantity;
+    
+        // Assuming you have the correct product ID for the order
+        $add = "INSERT INTO order_details (customer_id, product_id,  name, product_price, qty, total_price, created_at) VALUES ('$customer_id', '$productId','$itemName', '$productPrice', '$quantity', '$itemTotalPrice', '$createdAt')";
+        $insertResult = mysqli_query($conn, $insertOrderDetailsQuery);
+
+        if (!$insertResult) {
+            echo 'Error inserting order details: ' . mysqli_error($conn);
+        }
+    }
+
+    // Unset the 'cart' session variable
+    unset($_SESSION['cart']);
+}
+if ($queryconnect) {
+  //sweet alerrt
+  echo '
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+      Swal.fire({
+          title: "Success!",
+          text: "Your order will be delivered in one to two weeks. We hope you enjoy your purchase and your order ID is ' . $order_id . '!",
+          icon: "success",
+      }).then(function() {
+          window.location.href = "index.php";
+      });
+  </script>';
+  unset($_SESSION['cart']);
+
+}
+if ($queryconnect) {
+  //sweet alerrt
+  echo '
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+      Swal.fire({
+          title: "Success!",
+          text: "Your order will be delivered in one to two weeks. We hope you enjoy your purchase and your order ID is ' . $order_id . '!",
+          icon: "success",
+      }).then(function() {
+          window.location.href = "home.php";
+      });
+  </script>';
+  unset($_SESSION['cart']);
+    }
+}
+die;
+?>
 
 
 
