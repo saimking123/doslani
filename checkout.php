@@ -229,7 +229,9 @@ include("header.php");
                                                 </div>
                                                 <div class="product__description">
                                                     <h4 class="product__description--name"><a href="product-details.html">' . $item['name'] . '</a></h4>
-                                                    <span class="product__description--variant">COLOR: '. $item['color'].' </span>
+                                                    <span class="product__description--variant">COLOR: '. $item['color'].' </span><br>
+                                                    <span class="product__description--variant">weigth: '. $item['weigth'].' </span>
+
                                                 </div>
                                             </div>
                                         </td>
