@@ -78,6 +78,55 @@ if (!$connectquery) {
 </div>
 
 
+
+<!-- for weight -->
+<style>
+  input[type="number"] {
+    appearance: textfield;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+}
+</style>
+<div class="form-group">
+    <label for="category">Choose categories</label>
+    <div class="row">
+  <div class="customer_records">
+  <input name="weigth[]" type="number" placeholder="weigth">
+    
+    <a class="extra-fields-customer" href="#">Add More weigth</a>
+  </div>
+
+  <div class="customer_records_dynamic"></div>
+
+</div>
+   
+</div>
+<script>
+  
+$('.extra-fields-customer').click(function() {
+  $('.customer_records').clone().appendTo('.customer_records_dynamic');
+  $('.customer_records_dynamic .customer_records').addClass('single remove');
+  $('.single .extra-fields-customer').remove();
+  $('.single').append('<a href="#" class="remove-field btn-remove-customer">Remove Customer</a>');
+  $('.customer_records_dynamic > .single').attr("class", "remove");
+  
+  $('.customer_records_dynamic input').each(function() {
+    var count = 0;
+    var fieldname = $(this).attr("name");
+    $(this).attr('name', fieldname + count );
+    count++;
+  });
+
+});
+
+$(document).on('click', '.remove-field', function(e) {
+  $(this).parent('.remove').remove();
+  e.preventDefault();
+});
+</script>
+<!-- end weight portion -->
+
+
     <!-- <div class="color-container">
     <div class="color-input" style="display:flex; margin:10px; column-gap:10px">
         <input type="text" name="Weight[]">

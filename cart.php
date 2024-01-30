@@ -43,7 +43,18 @@ include("header.php");
                     </div>
                     <div class="minicart__text">
                         <h4 class="minicart__subtitle"><a href="product-details.html"><?php echo $item['name'];?></a></h4>
-                        <span class="color__variant"><b>Color:</b> yellow</span>
+                        <span class="color__variant"><b>Color:</b>
+                    <?php
+                        $colors = json_decode($rows["color"]);
+                        foreach ($colors as $item) {
+
+            
+              echo '<button type="button" name="color" class="color-button" style="background-color:' . $item['color'] . '" ></button>';
+                
+            }
+                
+                ?>
+                        <?php echo $item['color'];?></span>
                         <div class="minicart__price">
                             <span class="minicart__current--price">Pkr<?php echo $item['price'];?></span>
                             <span class="minicart__old--price">Pkr<?php echo $item['price']; ?></span>
@@ -82,7 +93,7 @@ include("header.php");
             </div>
         </div>
         <?php
-    }
+}
     ?>
         <!-- End offCanvas minicart -->
 
@@ -219,7 +230,39 @@ if (isset($_POST['update'])) {
                 </div>
                 <div class="cart__content">
                     <h3 class="cart__content--title h4"><a href="product-details.html"><?php echo $item['name'];?></a></h3>
-                    <span class="cart__content--variant">COLOR: Blue</span>
+                    <style>
+                          
+                                                .color-button {
+                                                    width: 30px;
+                                                    height: 30px;
+                                                    border-radius: 30%;
+                                                    margin-right: 10px;
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                }
+
+                    </style>
+                    <?php
+
+function hex_to_rgb($hex) {
+    // Remove the hash if it exists
+    $hex = str_replace('#', '', $hex);
+
+    // Convert shorthand hex color (e.g., #123) to full hex (e.g., #112233)
+    $hex = str_pad($hex, 6, $hex[0]);
+
+    // Get the RGB values
+    list($r, $g, $b) = sscanf($hex, "%02x%02x%02x");
+
+    // Return the RGB values in the format "rgb(r, g, b)"
+    return "rgb($r, $g, $b)";
+}
+
+// Example usage
+$item['color'] = '#1a2b3c';
+?>
+                    
+                    <span class="cart__content--variant">COLOR:<?php echo hex_to_rgb($item['color']);?></span>  
                     <span class="cart__content--variant">WEIGHT:<?php echo $item['weigth'];?></span>
                 </div>
             </div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .payment__history--list {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .payment__history--link {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .payment__history--link.selected::after {
+            content: '\2714'; /* Unicode character for check mark */
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li class="payment__history--list"><button class="payment__history--link primary__btn" onclick="selectPaymentOption(this)">Credit Card</button></li>
+        <li class="payment__history--list"><button class="payment__history--link primary__btn" onclick="selectPaymentOption(this)">Bank Transfer</button></li>
+        <li class="payment__history--list"><button class="payment__history--link primary__btn" onclick="selectPaymentOption(this)">COD</button></li>
+    </ul>
+
+    <script>
+        function selectPaymentOption(button) {
+            // Remove the 'selected' class from all payment options
+            var paymentOptions = document.querySelectorAll('.payment__history--link');
+            paymentOptions.forEach(function(option) {
+                option.classList.remove('selected');
+            });
+
+            // Add the 'selected' class to the clicked payment option
+            button.classList.add('selected');
+        }
+    </script>
+</body>
+</html>

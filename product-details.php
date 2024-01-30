@@ -6,6 +6,37 @@ if (isset($_GET["pro_id"])) {
     $pro_id = $_GET["pro_id"];
 }
 ?>
+<!-- for fetching color styling -->
+  <style>
+                                                .color-button {
+                                                    width: 30px;
+                                                    height: 30px;
+                                                    border-radius: 30%;
+                                                    margin-right: 10px;
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                }
+
+                                                .tick-mark {
+                                                    position: absolute;
+                                                    top: 50%;
+                                                    left: 50%;
+                                                    transform: translate(-50%, -50%);
+                                                    font-size: 16px;
+                                                    color: #ffffff;
+                                                    display: none;
+                                                }
+
+                                                .color-button.selected .tick-mark {
+                                                    display: block;
+                                                }
+
+                                                .color-button.selected {
+                                                    border: 2px solid #000; /* Add a border to indicate selection */
+                                                }   
+                                                </style>
+                                <!-- for fetching color end styling -->
+
 
     <main class="main__content_wrapper">
         
@@ -101,8 +132,8 @@ if (isset($_GET["pro_id"])) {
                                 }
                                 ?> 
                                     
-                                                        </div>
-                                                    </div>  
+                                        </div>
+                                    </div>  
                                                     
                     <div class="col">
                         <div class="product__details--info">
@@ -121,6 +152,23 @@ if (isset($_GET["pro_id"])) {
                                     <input type="hidden" name="name" value="<?php echo $rows["name"] ?>">
                                     <input type="hidden" name="price" value="<?php echo $rows["price"] ?>">
                                     <input type="hidden" name="img" value="<?php echo $rows["image"] ?>">
+                                    <input type="hidden" name="weigth" value="<?php echo $rows["size"] ?>">
+                                    <?php
+$colors = json_decode($rows["color"], true);
+
+if ($colors !== null) {
+    // JSON decoding was successful
+    // You can now use $colors as an associative array
+
+    // Assuming there's a specific key you want to retrieve, like "selectedColor"
+    $selectedColor = isset($colors["selectedColor"]) ? $colors["selectedColor"] : '';
+
+    echo '<input type="hidden" name="color" value="' . htmlspecialchars($selectedColor, ENT_QUOTES, 'UTF-8') . '">';
+} else {
+    // JSON decoding failed, handle the error or provide a default value
+    echo '<input type="hidden" name="color" value="default_color">';
+}                           ?>
+
                                     
                                     <h2 class="product__details--info__title mb-15" ><?php echo $rows['name']; ?> </h2>
                                     <?php
@@ -186,17 +234,36 @@ if (isset($_GET["pro_id"])) {
                                         <fieldset class="variant__input--fieldset">
                                             <legend class="product__variant--title mb-8">Color :</legend>
                                             <div class="variant__color d-flex">
-                                                <div class="variant__color--list">
+                                                <div class="variant__color--list" name="color">
                                                 
-                                                <?php
-                                                    // foreach ($rows as $row) {
-                                                        $colors = json_decode($rows["color"]);
+                                              
+                                               <?php
+                                    $colors = json_decode($rows["color"]);
+                                    echo '<div id="color-buttons">';
+                                    foreach ($colors as $color) {
+                                        echo '<button type="button" name="selectedColor" class="color-button" style="background-color:' . $color . '" onclick="selectColor(this)"><span class="tick-mark">✓</span></button>';
+                                    }
+                                    echo '</div>';
+                                    echo '<input type="hidden" name="color" id="selectedColorInput" value="">';
+                                    ?>
 
-                                                        foreach ($colors as $color) {
-                                                            echo '<button name="color" style="background-color:' . $color . '; width:50px; height:50px;"></button>';
-                                                        // }
-                                                    }
-                                                    ?>
+                                    <script>
+                                    function selectColor(button) {
+                                        // Remove tick mark from previously selected button
+                                        var prevSelected = document.querySelector('.color-button.selected');
+                                        if (prevSelected) {
+                                            prevSelected.classList.remove('selected');
+                                        }
+
+                                        // Add tick mark to the clicked button
+                                        button.classList.add('selected');
+
+                                        // Set the selected color value in the hidden input field
+                                        var selectedColor = button.style.backgroundColor;
+                                        document.getElementById('selectedColorInput').value = selectedColor;
+                                    }
+                                    </script>
+
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -204,12 +271,12 @@ if (isset($_GET["pro_id"])) {
                                     <div class="product__variant--list mb-20">
                                             <fieldset class="variant__input--fieldset">
                                                 <legend class="product__variant--title mb-8">Weight :</legend>
-                                                <select class="variant__size" id="weightSelect" name="weight">
+                                                <select class="variant__size" id="weightSelect" name="size">
                                                     <?php
                                                     $size = json_decode($rows["size"]);
 
-                                                    foreach ($size as $weight) {
-                                                        echo '<option value="' . $weight . '">' . $weight . '</option>';
+                                                    foreach ($size as $size) {
+                                                        echo '<option name="weight" value="' . $size . '">' . $size . '</option>';
                                                     }
                                                     ?>
                                                 </select>

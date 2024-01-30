@@ -163,7 +163,7 @@ include("header.php");
                             
                         </div>
                     </div>
-
+                    
                     <div class="col-lg-5 col-md-6">
                         <aside class="checkout__sidebar sidebar border-radius-10">
                             <h2 class="checkout__order--summary__title text-center mb-15">Your Order Summary</h2>
@@ -535,7 +535,8 @@ include("header.php");
             </div>
         </div>
         </div>
-  
+        
+
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>

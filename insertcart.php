@@ -10,12 +10,14 @@ if(isset($_POST["add-to-cart"]))
         'price'=>$_POST['price'],
         'quan'=>$_POST['quan'],
         'img'=>$_POST['img'],
-        'weigth'=>$_POST['weigth'],
+        'weigth'=>$_POST['size'],
+        'color'=>$_POST['color'],
 
-    
+
       );
+      var_dump($_SESSION['cart']);
       
-    header('location:index.php');
+    // header('location:index.php');
  
 }
 
@@ -27,7 +29,9 @@ if(isset($_POST["add-to-wishlist"]))
         'name'=>$_POST['wishlist_name'],
         'price'=>$_POST['wishlist_price'],
         'img'=>$_POST['wishlist_img'], 
-        'weigth'=>$_POST['weigth'], 
+        'weigth'=>$_POST['weigth'],
+        'color'=>$_POST['color'], 
+
       );
       header('location:index.php');
     }
