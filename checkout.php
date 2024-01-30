@@ -187,7 +187,8 @@ include("header.php");
                                                     </div>
                                                     <div class="product__description">
                                                         <h4 class="product__description--name"><a href="product-details.php?id=<?php echo $pro_id;?>">' . $row['name'] . '</a></h4>
-                                                        <span class="product__description--variant">COLOR: Blue</span>
+                                                        <span class="product__description--variant">COLOR: '. $row['color'].' </span>
+
                                                     </div>
                                                 </div>
                                             </td>
@@ -228,7 +229,7 @@ include("header.php");
                                                 </div>
                                                 <div class="product__description">
                                                     <h4 class="product__description--name"><a href="product-details.html">' . $item['name'] . '</a></h4>
-                                                    <span class="product__description--variant">COLOR: Blue</span>
+                                                    <span class="product__description--variant">COLOR: '. $item['color'].' </span>
                                                 </div>
                                             </div>
                                         </td>

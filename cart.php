@@ -261,7 +261,7 @@ function hex_to_rgb($hex) {
 // Example usage
 $item['color'] = '#1a2b3c';
 ?>
-                    
+                    <style></style>
                     <span class="cart__content--variant">COLOR:<?php echo hex_to_rgb($item['color']);?></span>  
                     <span class="cart__content--variant">WEIGHT:<?php echo $item['weigth'];?></span>
                 </div>
