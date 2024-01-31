@@ -10,14 +10,14 @@ if(isset($_POST["add-to-cart"]))
         'price'=>$_POST['price'],
         'quan'=>$_POST['quan'],
         'img'=>$_POST['img'],
-        'weigth'=>$_POST['size'],
+        'size'=>$_POST['size'],
         'color'=>$_POST['color'],
 
 
       );
-      var_dump($_SESSION['cart']);
-      
-    // header('location:index.php');
+      // var_dump($_SESSION['cart']);
+    header('location:index.php');
+    // return  redirect()->route('product-details', ['id' => $item->id]);
  
 }
 

@@ -116,6 +116,8 @@ include("header.php");
                                                         <input class="checkout__input--field border-radius-5" placeholder="Email" name="shipping_email" name="shipping_email" id="input8"  type="text">
                                                     </div>
                                                 </div>
+                                                <!-- <input type="hidden" name="id" value=> -->
+                                                <input type="hidden" name="id" value="$pro_id"/>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-5" for="input9">Contact No<span class="checkout__input--label__star">*</span></label>
@@ -147,6 +149,20 @@ include("header.php");
                                                         <input class="checkout__input--field border-radius-5" placeholder="Postal code" name="shipping_postal_code" id="input12" type="text">
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-6 mb-20">
+                                                    <div class="checkout__input--list">
+                                                    <?php
+                                                    if (isset($_GET["pro_id"])) {
+                                                    $pro_id = $_GET["pro_id"];
+                                                   
+                                                        // <!-- <label class="checkout__input--label mb-5" for="input12">Postal Code <span class="checkout__input--label__star">*</span></label> -->
+                                                        echo '<input type="hidden" name="pro_id" value="' . $pro_id . '">';
+                                                    }
+                                                    ?>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </details>
@@ -155,6 +171,7 @@ include("header.php");
                                     <label class="checkout__input--label mb-5" for="order">Order Notes <span class="checkout__input--label__star">*</span></label>
                                    <textarea class="checkout__notes--textarea__field border-radius-5" id="order" name="order_notes" placeholder="Notes about your order, e.g. special notes for delivery." spellcheck="false"></textarea>
                                 </div>
+                                <input type="hidden" value="<?php echo $pro_id ?>" name="product_id"> 
                                 <div class="checkout__content--step__footer d-flex align-items-center">
                                     <button class="continue__shipping--btn primary__btn border-radius-5" type="submit" name="placeholderbtn">Checkout Now</button>
                                     <a class="previous__link--content" href="cart.php">Return to cart</a>
@@ -183,7 +200,7 @@ include("header.php");
                                                 <div class="product__image two d-flex align-items-center">
                                                     <div class="product__thumbnail border-radius-5">
                                                         <a class="display-block" href="product-details.html"><img class="display-block border-radius-5" src="' . str_replace("../", "", $row['image']) . '" alt="cart-product"></a>
-                                                        <span class="product__thumbnail--quantity">' . $row[1] . '</span>
+                                                        <span class="product__thumbnail--quantity" name="quantity">' . $row['quantity'] . '</span>
                                                     </div>
                                                     <div class="product__description">
                                                         <h4 class="product__description--name"><a href="product-details.php?id=<?php echo $pro_id;?>">' . $row['name'] . '</a></h4>
@@ -230,7 +247,7 @@ include("header.php");
                                                 <div class="product__description">
                                                     <h4 class="product__description--name"><a href="product-details.html">' . $item['name'] . '</a></h4>
                                                     <span class="product__description--variant">COLOR: '. $item['color'].' </span><br>
-                                                    <span class="product__description--variant">weigth: '. $item['weigth'].' </span>
+                                                    <span class="product__description--variant">weigth: '. $item['size'].' </span>
 
                                                 </div>
                                             </div>

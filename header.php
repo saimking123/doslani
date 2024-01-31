@@ -660,11 +660,11 @@ session_start();
             <div class="minicart__product">
                 <div class="minicart__product--items d-flex">
                     <div class="minicart__thumb">
-                        <a href="product-details.html"><img src="<?php echo str_replace("../", "", $item['img']); ?>" alt="prduct-img"></a>
+                        <a href="product-details.php?pro_id=<?php echo $item["id"] ?>"><img src="<?php echo str_replace("../", "", $item['img']); ?>" alt="prduct-img"></a>
                     </div>
                     <div class="minicart__text">
-                        <h4 class="minicart__subtitle"><a href="product-details.html"><?php echo $item['name']; ?></a></h4>
-                        <span class="color__variant"><b>weigth:</b> <?php echo $item['weigth'];?></span>
+                        <h4 class="minicart__subtitle"><a href="product-details.php?pro_id=<?php echo $item["id"] ?>"><?php echo $item['name']; ?></a></h4>
+                        <span class="color__variant"><b>weigth:</b> <?php echo $item['size'];?></span>
                         <div class="minicart__price">
                             <span class="minicart__current--price"><?php echo $item['price'];?></span>
                             <span class="minicart__old--price"><?php echo $item['price'];?></span>

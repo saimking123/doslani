@@ -72,7 +72,11 @@ if (isset($_GET["pro_id"])) {
                                     }
                                     while($rows = mysqli_fetch_array($selectqueryconnect)){                            
                                     ?>
-                    
+                      <?php if(isset($_POST["add-to-cart"])){ ?>
+                <div class="alert alert-success" role="alert">
+                  <strong>Add to cart success fully</strong><a href="cart.php" class="btn btn-primary float-right">View Cart</a>
+                </div>
+                <?php }  ?>
                     <div class="col">
                         <div class="product__details--media">
                             <div class="single__product--preview  swiper mb-25">
@@ -152,7 +156,9 @@ if (isset($_GET["pro_id"])) {
                                     <input type="hidden" name="name" value="<?php echo $rows["name"] ?>">
                                     <input type="hidden" name="price" value="<?php echo $rows["price"] ?>">
                                     <input type="hidden" name="img" value="<?php echo $rows["image"] ?>">
-                                    <input type="hidden" name="weigth" value="<?php echo $rows["size"] ?>">
+                                    <input type="hidden" name="size" value="<?php echo $rows["size"] ?>">
+                                    
+
                                     <?php
 $colors = json_decode($rows["color"], true);
 

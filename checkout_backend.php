@@ -2,9 +2,14 @@
 include("connection/connection.php");
 // include("header.php");
 session_start();
+echo '<pre>';
+print_r($_REQUEST);
+echo '</pre>';
+// die();
 ?>
 
 <?php
+var_dump($_GET['pro_id']);
 if (isset($_POST['placeholderbtn'])) {
     if (isset($_GET['pro_id'])) {
         $pro_id = $_GET['pro_id'];  // get product id from url
@@ -81,6 +86,9 @@ if (isset($_POST['placeholderbtn'])) {
         } else {
             echo 'Query error: ' . mysqli_error($conn);
         }
+
+
+
     } else {
         $fullname = $_POST['fullname'];
         $email = $_POST['email'];
@@ -191,4 +199,5 @@ if (isset($_POST['placeholderbtn'])) {
         }
     }
 }
+ 
 ?>
